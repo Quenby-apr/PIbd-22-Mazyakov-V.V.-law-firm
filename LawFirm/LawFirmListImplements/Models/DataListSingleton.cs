@@ -15,7 +15,7 @@ namespace LawFirmListImplement.Models
         private DataListSingleton() { Components = new List<Component>(); Orders = new List<Order>(); Documents = new List<Document>(); }
         public static DataListSingleton GetInstance()
         {
-            if (instance == null) 
+            if (instance == null)
             {
                 instance = new DataListSingleton();
             }

@@ -17,7 +17,7 @@ namespace LawFirmListImplement.Implements
         {
             source = DataListSingleton.GetInstance();
         }
-        
+
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null)

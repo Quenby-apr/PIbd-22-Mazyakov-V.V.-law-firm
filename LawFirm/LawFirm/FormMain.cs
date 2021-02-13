@@ -15,15 +15,15 @@ namespace LawFirmView
 {
     public partial class FormMain : Form
     {
-        [Dependency] 
+        [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        public FormMain(OrderLogic orderLogic) 
+        public FormMain(OrderLogic orderLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
         }
-        private void FormMain_Load(object sender, EventArgs e) 
+        private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -40,55 +40,55 @@ namespace LawFirmView
                     dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 }
-            }            
-            catch (Exception ex)   
-            {            
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); 
-            }       
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void КомпонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
-        private void ДокументыToolStripMenuItem_Click(object sender, EventArgs e) 
-        { 
+        private void ДокументыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             var form = Container.Resolve<FormDocuments>();
             form.ShowDialog();
         }
-        private void ButtonCreateOrder_Click(object sender, EventArgs e) 
+        private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
-            LoadData(); 
+            LoadData();
         }
         private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
-            { 
+            {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
-                { 
+                {
                     _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
-                } 
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } 
+                }
             }
         }
         private void ButtonOrderReady_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count == 1) 
+            if (dataGridView.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
                     _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
-                } 
-                catch (Exception ex) 
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -100,7 +100,7 @@ namespace LawFirmView
             {
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
-                { 
+                {
                     _orderLogic.PayOrder(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
                 }
@@ -110,8 +110,8 @@ namespace LawFirmView
                 }
             }
         }
-        private void ButtonRef_Click(object sender, EventArgs e) 
-        { 
+        private void ButtonRef_Click(object sender, EventArgs e)
+        {
             LoadData();
         }
     }

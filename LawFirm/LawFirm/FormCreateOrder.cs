@@ -16,7 +16,7 @@ namespace LawFirmView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency] 
+        [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly DocumentLogic _logicD;
         private readonly OrderLogic _logicO;
@@ -38,17 +38,17 @@ namespace LawFirmView
                     comboBoxDocument.ValueMember = "Id";
                     comboBoxDocument.SelectedItem = null;
                 }
-            }            
-            catch (Exception ex)  
-            {     
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);  
-            }      
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void CalcSum() 
+        private void CalcSum()
         {
             if (comboBoxDocument.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
-            { 
-                try 
+            {
+                try
                 {
                     int id = Convert.ToInt32(comboBoxDocument.SelectedValue);
                     DocumentViewModel document = _logicD.Read(new DocumentBindingModel { Id = id })?[0];
@@ -70,33 +70,33 @@ namespace LawFirmView
             CalcSum();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
-        { 
+        {
             if (string.IsNullOrEmpty(textBoxCount.Text))
-            { 
+            {
                 MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            } 
+            }
             if (comboBoxDocument.SelectedValue == null)
-            { 
+            {
                 MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            } 
-            try 
-            { 
+            }
+            try
+            {
                 _logicO.CreateOrder(new CreateOrderBindingModel
-                { 
+                {
                     DocumentId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToDecimal(textBoxSum.Text) 
+                    Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
-            } 
+            }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
         private void ButtonCancel_Click(object sender, EventArgs e)
         {

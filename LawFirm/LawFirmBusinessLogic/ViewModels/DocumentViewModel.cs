@@ -11,9 +11,9 @@ namespace LawFirmBusinessLogic.ViewModels
     public class DocumentViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Название изделия")] 
+        [DisplayName("Название изделия")]
         public string DocumentName { get; set; }
-        [DisplayName("Цена")] 
+        [DisplayName("Цена")]
         public decimal Price { get; set; }
         public Dictionary<int, (string, int)> DocumentComponents { get; set; }
     }

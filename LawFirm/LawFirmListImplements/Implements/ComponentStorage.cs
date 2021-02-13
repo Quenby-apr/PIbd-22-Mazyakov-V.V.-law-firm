@@ -20,16 +20,17 @@ namespace LawFirmListImplement.Implements
 
         public ComponentViewModel GetElement(ComponentBindingModel model)
         {
-            if (model == null) {
+            if (model == null)
+            {
 
                 return null;
             }
             foreach (var component in source.Components)
-            { 
+            {
                 if (component.Id == model.Id || component.ComponentName == model.ComponentName)
-                { 
+                {
                     return CreateModel(component);
-                } 
+                }
             }
             return null;
         }
@@ -69,7 +70,7 @@ namespace LawFirmListImplement.Implements
                 if (component.Id >= tempComponent.Id)
                 {
                     tempComponent.Id = component.Id + 1;
-                } 
+                }
             }
             source.Components.Add(CreateModel(model, tempComponent));
         }
@@ -78,13 +79,13 @@ namespace LawFirmListImplement.Implements
         {
             Component tempComponent = null;
             foreach (var component in source.Components)
-            { 
-                if (component.Id == model.Id) 
-                { 
+            {
+                if (component.Id == model.Id)
+                {
                     tempComponent = component;
-                } 
+                }
             }
-            if (tempComponent == null) 
+            if (tempComponent == null)
             {
                 throw new Exception("Элемент не найден");
             }
@@ -108,9 +109,10 @@ namespace LawFirmListImplement.Implements
             return component;
         }
         private ComponentViewModel CreateModel(Component component)
-        { 
-            return new ComponentViewModel {
-                Id = component.Id, 
+        {
+            return new ComponentViewModel
+            {
+                Id = component.Id,
                 ComponentName = component.ComponentName
             };
         }

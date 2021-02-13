@@ -10,17 +10,17 @@ namespace LawFirmBusinessLogic.BusinessLogics
     public class ComponentLogic
     {
         private readonly IComponentStorage _componentStorage;
-        public ComponentLogic(IComponentStorage componentStorage) 
+        public ComponentLogic(IComponentStorage componentStorage)
         {
-            _componentStorage = componentStorage; 
+            _componentStorage = componentStorage;
         }
         public List<ComponentViewModel> Read(ComponentBindingModel model)
         {
-            if (model == null) 
+            if (model == null)
             {
                 return _componentStorage.GetFullList();
             }
-            if (model.Id.HasValue) 
+            if (model.Id.HasValue)
             {
                 return new List<ComponentViewModel> { _componentStorage.GetElement(model) };
             }
@@ -28,18 +28,21 @@ namespace LawFirmBusinessLogic.BusinessLogics
         }
         public void CreateOrUpdate(ComponentBindingModel model)
         {
-            var element = _componentStorage.GetElement(new ComponentBindingModel { 
-                ComponentName = model.ComponentName });
+            var element = _componentStorage.GetElement(new ComponentBindingModel
+            {
+                ComponentName = model.ComponentName
+            });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть компонент с таким названием"); 
+                throw new Exception("Уже есть компонент с таким названием");
             }
-            if (model.Id.HasValue) 
+            if (model.Id.HasValue)
             {
-                _componentStorage.Update(model); 
-            } else
+                _componentStorage.Update(model);
+            }
+            else
             {
-                _componentStorage.Insert(model); 
+                _componentStorage.Insert(model);
             }
         }
         public void Delete(ComponentBindingModel model)

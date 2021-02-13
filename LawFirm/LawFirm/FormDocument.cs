@@ -16,7 +16,7 @@ namespace LawFirmView
 {
     public partial class FormDocument : Form
     {
-        [Dependency] 
+        [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
         private readonly DocumentLogic logic;
@@ -33,9 +33,9 @@ namespace LawFirmView
             {
                 try
                 {
-                    DocumentViewModel view = logic.Read(new DocumentBindingModel  { Id = id.Value })?[0]; 
-                    if (view != null) 
-                    { 
+                    DocumentViewModel view = logic.Read(new DocumentBindingModel { Id = id.Value })?[0];
+                    if (view != null)
+                    {
                         textBoxName.Text = view.DocumentName;
                         textBoxPrice.Text = view.Price.ToString();
                         documentComponents = view.DocumentComponents;
@@ -44,41 +44,44 @@ namespace LawFirmView
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else {
+            else
+            {
                 documentComponents = new Dictionary<int, (string, int)>();
             }
         }
-        private void LoadData() { 
-            try 
+        private void LoadData()
+        {
+            try
             {
                 if (documentComponents != null)
                 {
                     dataGridView.Rows.Clear();
                     foreach (var dc in documentComponents)
-                    { 
-                        dataGridView.Rows.Add(new object[] 
+                    {
+                        dataGridView.Rows.Add(new object[]
                         {
                             dc.Key, dc.Value.Item1, dc.Value.Item2 });
-                    } 
-                } 
+                    }
+                }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
-        { 
+        {
             var form = Container.Resolve<FormDocumentComponent>();
-            if (form.ShowDialog() == DialogResult.OK) 
+            if (form.ShowDialog() == DialogResult.OK)
             {
                 if (documentComponents.ContainsKey(form.Id))
                 {
                     documentComponents[form.Id] = (form.ComponentName, form.Count);
                 }
-                else {
+                else
+                {
                     documentComponents.Add(form.Id, (form.ComponentName, form.Count));
-                } 
+                }
                 LoadData();
             }
         }
@@ -91,32 +94,33 @@ namespace LawFirmView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
                 form.Count = documentComponents[id].Item2;
-                if (form.ShowDialog() == DialogResult.OK) 
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    documentComponents[form.Id] = (form.ComponentName, form.Count); 
+                    documentComponents[form.Id] = (form.ComponentName, form.Count);
                     LoadData();
                 }
             }
         }
         private void ButtonDel_Click(object sender, EventArgs e)
-        { 
+        {
             if (dataGridView.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                { 
-                    try 
+                {
+                    try
                     {
                         documentComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
-                    } 
-                    catch (Exception ex) 
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     LoadData();
-                } 
+                }
             }
         }
-        private void ButtonRef_Click(object sender, EventArgs e) { 
+        private void ButtonRef_Click(object sender, EventArgs e)
+        {
             LoadData();
         }
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace LawFirmView
                 return;
             }
             if (string.IsNullOrEmpty(textBoxPrice.Text))
-            { 
+            {
                 MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -149,14 +153,14 @@ namespace LawFirmView
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ButtonCancel_Click(object sender, EventArgs e)
-        { 
-            DialogResult = DialogResult.Cancel; 
+        {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
     }

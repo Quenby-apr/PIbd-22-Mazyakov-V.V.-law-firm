@@ -48,7 +48,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
         public void Delete(DocumentBindingModel model)
         {
             var element = _documentStorage.GetElement(new DocumentBindingModel { Id = model.Id });
-            if (element == null) 
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }

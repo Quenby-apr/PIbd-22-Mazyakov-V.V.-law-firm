@@ -23,8 +23,8 @@ namespace LawFirmView
             set { comboBoxComponent.SelectedValue = value; }
         }
         public string ComponentName { get { return comboBoxComponent.Text; } }
-        public int Count 
-        { 
+        public int Count
+        {
             get { return Convert.ToInt32(textBoxCount.Text); }
             set { textBoxCount.Text = value.ToString(); }
         }
@@ -32,7 +32,7 @@ namespace LawFirmView
         {
             InitializeComponent();
             List<ComponentViewModel> list = logic.Read(null);
-            if (list != null) 
+            if (list != null)
             {
                 comboBoxComponent.DisplayMember = "ComponentName";
                 comboBoxComponent.ValueMember = "Id";
@@ -44,7 +44,7 @@ namespace LawFirmView
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
-                MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxComponent.SelectedValue == null)
@@ -54,10 +54,10 @@ namespace LawFirmView
             }
             DialogResult = DialogResult.OK; Close();
         }
-        private void ButtonCancel_Click(object sender, EventArgs e) 
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            Close(); 
+            Close();
         }
     }
 }
