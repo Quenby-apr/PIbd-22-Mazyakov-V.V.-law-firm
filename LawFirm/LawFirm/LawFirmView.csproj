@@ -148,6 +148,10 @@
       <Project>{ebd9ba28-d0db-4d4a-a491-69246c56e7f8}</Project>
       <Name>LawFirmBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LawFirmFileImplement\LawFirmFileImplement.csproj">
+      <Project>{326320c2-9681-4a43-bfb2-484c18394d83}</Project>
+      <Name>LawFirmFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LawFirmListImplements\LawFirmListImplements.csproj">
       <Project>{ee31e235-cf1f-44d1-8922-176160a7366a}</Project>
       <Name>LawFirmListImplements</Name>
