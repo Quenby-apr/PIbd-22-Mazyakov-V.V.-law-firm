@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LawFirm;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogics;
 using Unity;
@@ -113,6 +114,17 @@ namespace LawFirmView
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+        private void ПополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouseRefill>();
+            form.ShowDialog();
+        }
+
+        private void СкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.BusinessLogics;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmListImplement.Implements;
@@ -30,9 +31,11 @@ namespace LawFirmView
             currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IDocumentStorage, DocumentStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWarehouseStorage, WarehouseStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<DocumentLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<WarehouseLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

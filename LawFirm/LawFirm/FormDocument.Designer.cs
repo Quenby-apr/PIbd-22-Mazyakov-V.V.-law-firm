@@ -38,11 +38,11 @@
             this.buttonChange = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.номер = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Компонент = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Количество = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxComponents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -142,28 +142,12 @@
             this.номер,
             this.Компонент,
             this.Количество});
-            this.dataGridView.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView.Location = new System.Drawing.Point(7, 19);
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(544, 316);
             this.dataGridView.TabIndex = 0;
-            // 
-            // номер
-            // 
-            this.номер.HeaderText = "id";
-            this.номер.Name = "номер";
-            this.номер.Visible = false;
-            // 
-            // Компонент
-            // 
-            this.Компонент.HeaderText = "Компонент";
-            this.Компонент.Name = "Компонент";
-            this.Компонент.Width = 400;
-            // 
-            // Количество
-            // 
-            this.Количество.HeaderText = "Количество";
-            this.Количество.Name = "Количество";
             // 
             // buttonSave
             // 
@@ -184,6 +168,24 @@
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // номер
+            // 
+            this.номер.HeaderText = "id";
+            this.номер.Name = "номер";
+            this.номер.Visible = false;
+            // 
+            // Компонент
+            // 
+            this.Компонент.HeaderText = "Компонент";
+            this.Компонент.Name = "Компонент";
+            this.Компонент.Width = 400;
+            // 
+            // Количество
+            // 
+            this.Количество.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Количество.HeaderText = "Количество";
+            this.Количество.Name = "Количество";
             // 
             // FormDocument
             // 
