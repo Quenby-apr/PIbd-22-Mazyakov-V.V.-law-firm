@@ -134,7 +134,7 @@ namespace LawFirmListImplement.Implements
             return warehouse;
         }
         private WarehouseViewModel CreateModel(Warehouse warehouse)
-        {// требуется дополнительно получить список компонентов для изделия с названиями и их количество  
+        {// требуется дополнительно получить список компонентов для хранилища с названиями и их количеством  
             Dictionary<int, (string, int)> warehouseComponents = new Dictionary<int, (string, int)>();
 
             foreach (var warehouseComponent in warehouse.WarehouseComponents)
