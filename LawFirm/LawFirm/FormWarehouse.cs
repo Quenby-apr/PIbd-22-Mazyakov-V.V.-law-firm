@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
-using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmBusinessLogic.BusinessLogics;
 using LawFirmBusinessLogic.ViewModels;
 using Unity;
 
-namespace LawFirm
+namespace LawFirmView
 {
     public partial class FormWarehouse : Form
     {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.BusinessLogics;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmListImplement.Implements;

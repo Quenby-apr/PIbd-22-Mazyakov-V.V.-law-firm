@@ -1,4 +1,4 @@
-﻿namespace LawFirm
+﻿namespace LawFirmView
 {
     partial class FormWarehouseRefill
     {

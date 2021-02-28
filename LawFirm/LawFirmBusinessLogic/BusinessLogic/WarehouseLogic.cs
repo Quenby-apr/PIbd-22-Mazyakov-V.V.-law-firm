@@ -5,7 +5,7 @@ using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
 
-namespace LawFirmBusinessLogic.BusinessLogic
+namespace LawFirmBusinessLogic.BusinessLogics
 {
     public class WarehouseLogic
     {
