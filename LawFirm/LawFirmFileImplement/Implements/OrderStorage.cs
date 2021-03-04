@@ -94,7 +94,7 @@ namespace LawFirmFileImplement.Implements
             {
                 Id = order.Id,
                 DocumentId = order.DocumentId,
-                DocumentName = documentName,
+                DocumentName = source.Documents.FirstOrDefault(x => x.Id == order.DocumentId)?.DocumentName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
