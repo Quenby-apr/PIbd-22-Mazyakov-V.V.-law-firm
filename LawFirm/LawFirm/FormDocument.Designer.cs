@@ -33,9 +33,9 @@
             this.labelPrice = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.groupBoxComponents = new System.Windows.Forms.GroupBox();
-            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonChange = new System.Windows.Forms.Button();
+            this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.номер = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,9 +81,9 @@
             // 
             // groupBoxComponents
             // 
-            this.groupBoxComponents.Controls.Add(this.buttonUpdate);
+            this.groupBoxComponents.Controls.Add(this.buttonRefresh);
             this.groupBoxComponents.Controls.Add(this.buttonDelete);
-            this.groupBoxComponents.Controls.Add(this.buttonChange);
+            this.groupBoxComponents.Controls.Add(this.buttonUpdate);
             this.groupBoxComponents.Controls.Add(this.buttonAdd);
             this.groupBoxComponents.Controls.Add(this.dataGridView);
             this.groupBoxComponents.Location = new System.Drawing.Point(19, 87);
@@ -93,15 +93,15 @@
             this.groupBoxComponents.TabStop = false;
             this.groupBoxComponents.Text = "Компоненты";
             // 
-            // buttonUpdate
+            // buttonRefresh
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(579, 205);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpdate.TabIndex = 4;
-            this.buttonUpdate.Text = "Обновить";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
-            this.buttonUpdate.Click += new System.EventHandler(this.ButtonRef_Click);
+            this.buttonRefresh.Location = new System.Drawing.Point(579, 205);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefresh.TabIndex = 4;
+            this.buttonRefresh.Text = "Обновить";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
             // buttonDelete
             // 
@@ -113,15 +113,15 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
-            // buttonChange
+            // buttonUpdate
             // 
-            this.buttonChange.Location = new System.Drawing.Point(579, 97);
-            this.buttonChange.Name = "buttonChange";
-            this.buttonChange.Size = new System.Drawing.Size(75, 23);
-            this.buttonChange.TabIndex = 2;
-            this.buttonChange.Text = "Изменить";
-            this.buttonChange.UseVisualStyleBackColor = true;
-            this.buttonChange.Click += new System.EventHandler(this.ButtonUpd_Click);
+            this.buttonUpdate.Location = new System.Drawing.Point(579, 97);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 2;
+            this.buttonUpdate.Text = "Изменить";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
             // buttonAdd
             // 
@@ -214,9 +214,9 @@
         private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.GroupBox groupBoxComponents;
-        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.Button buttonChange;
+        private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSave;
