@@ -160,5 +160,10 @@ namespace LawFirmListImplement.Implements
                 WarehouseComponents = warehouseComponents
             };
         }
+
+        public bool CheckAndWriteOff(Dictionary<int, (string, int)> components, int countOfDocs)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

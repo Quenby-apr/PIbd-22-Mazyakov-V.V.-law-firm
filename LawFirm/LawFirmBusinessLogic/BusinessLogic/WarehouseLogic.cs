@@ -38,7 +38,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             var element = _warehouseStorage.GetElement(
                 new WarehouseBindingModel
                 {
-                    Id = model.Id
+                    WarehouseName = model.WarehouseName
                 });
 
             if (element != null && element.Id != model.Id)
