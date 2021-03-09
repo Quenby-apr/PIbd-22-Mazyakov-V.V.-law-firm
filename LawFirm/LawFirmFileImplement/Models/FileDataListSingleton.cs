@@ -77,7 +77,7 @@ namespace LawFirmFileImplement.Models
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
-                        DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value),
+                        DateImplement = !string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? Convert.ToDateTime(elem.Element("DateImplement").Value) : (DateTime?)null
                     });
                 }
             }
@@ -188,7 +188,7 @@ namespace LawFirmFileImplement.Models
                     var compElement = new XElement("DocumentComponents");
                     foreach (var component in document.DocumentComponents)
                     {
-                        compElement.Add(new XElement("DocumentComponents",
+                        compElement.Add(new XElement("DocumentComponent",
                         new XElement("Key", component.Key),
                         new XElement("Value", component.Value)));
                     }
