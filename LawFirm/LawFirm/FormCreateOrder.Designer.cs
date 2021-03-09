@@ -73,7 +73,6 @@
             this.comboBoxDocument.Size = new System.Drawing.Size(256, 21);
             this.comboBoxDocument.TabIndex = 3;
             this.comboBoxDocument.SelectedIndexChanged += new System.EventHandler(this.ComboBoxDocument_SelectedIndexChanged);
-            this.comboBoxDocument.Click += new System.EventHandler(this.FormCreateOrder_Load);
             // 
             // textBoxCount
             // 
