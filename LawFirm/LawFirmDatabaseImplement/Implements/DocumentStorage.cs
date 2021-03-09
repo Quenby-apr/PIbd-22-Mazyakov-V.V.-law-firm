@@ -149,6 +149,8 @@ namespace LawFirmDatabaseImplement.Implements
         private Document CreateModel(DocumentBindingModel model, Document document,
 LawFirmDatabase context)
         {
+            document.DocumentName = model.DocumentName;
+            document.Price = model.Price;
             if (model.Id.HasValue)
             {
                 var documentComponents = context.DocumentComponents.Where(rec =>
