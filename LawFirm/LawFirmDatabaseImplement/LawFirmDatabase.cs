@@ -12,7 +12,7 @@ namespace LawFirmDatabaseImplement
         { 
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LDatabase;Integrated Security=False;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LawFirmDatabase;Integrated Security=False;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder); 
         }

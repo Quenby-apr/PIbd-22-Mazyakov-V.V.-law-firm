@@ -19,6 +19,6 @@ namespace LawFirmDatabaseImplement.Models
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
     }
 }
