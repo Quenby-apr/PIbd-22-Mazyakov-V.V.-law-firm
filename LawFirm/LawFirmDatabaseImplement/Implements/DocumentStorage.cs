@@ -83,7 +83,14 @@ namespace LawFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Documents.Add(CreateModel(model, new Document(), context));
+                        Document document = new Document
+                        {
+                            DocumentName = model.DocumentName,
+                            Price = model.Price
+                        };
+                        context.Documents.Add(document);
+                        context.SaveChanges();
+                        CreateModel(model, document, context);
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -142,8 +149,6 @@ namespace LawFirmDatabaseImplement.Implements
         private Document CreateModel(DocumentBindingModel model, Document document,
 LawFirmDatabase context)
         {
-            document.DocumentName = model.DocumentName;
-            document.Price = model.Price;
             if (model.Id.HasValue)
             {
                 var documentComponents = context.DocumentComponents.Where(rec =>
