@@ -20,13 +20,13 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using (var context = new LawFirmDatabase())
             {
-                var order = context.Orders.FirstOrDefault
+                var order = context.Orders.Include(rec => rec.Document).FirstOrDefault
                     (rec => rec.Id == model.Id);
                 return order != null ? new OrderViewModel
                 {
                     Id = order.Id,
                     DocumentId = order.DocumentId,
-                    DocumentName = context.Documents.FirstOrDefault(rec => rec.Id == order.DocumentId).DocumentName,
+                    DocumentName = order.Document.DocumentName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
@@ -45,12 +45,12 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using (var context = new LawFirmDatabase())
             {
-                return context.Orders.Where(rec => rec.Id.Equals(model.Id))
+                return context.Orders.Include(rec => rec.Document).Where(rec => rec.Id.Equals(model.Id))
                     .ToList().Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         DocumentId = rec.DocumentId,
-                        DocumentName = context.Documents.FirstOrDefault(doc => doc.Id == rec.DocumentId).DocumentName,
+                        DocumentName = rec.Document.DocumentName,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -64,11 +64,12 @@ namespace LawFirmDatabaseImplement.Implements
         {
             using (var context = new LawFirmDatabase())
             {
-                return context.Orders.Select(rec => new OrderViewModel
+                return context.Orders.Include(rec => rec.Document)
+                    .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     DocumentId = rec.DocumentId,
-                    DocumentName = context.Documents.FirstOrDefault(doc => doc.Id == rec.DocumentId).DocumentName,
+                    DocumentName = rec.Document.DocumentName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
