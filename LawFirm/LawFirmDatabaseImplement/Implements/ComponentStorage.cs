@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
@@ -9,7 +8,7 @@ using LawFirmDatabaseImplement.Models;
 
 namespace LawFirmDatabaseImplement.Implements
 {
-    public class ComponentStorage: IComponentStorage 
+    public class ComponentStorage : IComponentStorage
     {
         public List<ComponentViewModel> GetFullList()
         {
@@ -24,44 +23,45 @@ namespace LawFirmDatabaseImplement.Implements
         }
         public List<ComponentViewModel> GetFilteredList(ComponentBindingModel model)
         {
-            if (model == null) 
+            if (model == null)
             {
-                return null; 
+                return null;
             }
-            using (var context = new LawFirmDatabase()) 
-            { 
+            using (var context = new LawFirmDatabase())
+            {
                 return context.Components.Where(rec => rec.ComponentName.Contains(model.ComponentName))
-                    .Select(rec => new ComponentViewModel 
+                    .Select(rec => new ComponentViewModel
                     {
                         Id = rec.Id,
-                        ComponentName = rec.ComponentName 
+                        ComponentName = rec.ComponentName
                     })
                     .ToList();
             }
         }
         public ComponentViewModel GetElement(ComponentBindingModel model)
         {
-            if (model == null) {
+            if (model == null)
+            {
                 return null;
             }
             using (var context = new LawFirmDatabase())
             {
                 var component = context.Components.FirstOrDefault
                     (rec => rec.ComponentName == model.ComponentName || rec.Id == model.Id);
-                return component != null ? new ComponentViewModel 
-                { 
+                return component != null ? new ComponentViewModel
+                {
                     Id = component.Id,
-                    ComponentName = component.ComponentName 
+                    ComponentName = component.ComponentName
                 } :
                 null;
             }
         }
-        public void Insert(ComponentBindingModel model) 
-        { 
-            using (var context = new LawFirmDatabase()) 
+        public void Insert(ComponentBindingModel model)
+        {
+            using (var context = new LawFirmDatabase())
             {
                 context.Components.Add(CreateModel(model, new Component()));
-                context.SaveChanges(); 
+                context.SaveChanges();
             }
         }
         public void Update(ComponentBindingModel model)
@@ -77,18 +77,19 @@ namespace LawFirmDatabaseImplement.Implements
         }
         public void Delete(ComponentBindingModel model)
         {
-            using (var context = new LawFirmDatabase()) 
+            using (var context = new LawFirmDatabase())
             {
                 Component element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
-                if (element != null) 
+                if (element != null)
                 {
                     context.Components.Remove(element);
                     context.SaveChanges();
-                } else
-                { 
-                    throw new Exception("Элемент не найден"); 
                 }
-            } 
+                else
+                {
+                    throw new Exception("Элемент не найден");
+                }
+            }
         }
         private Component CreateModel(ComponentBindingModel model, Component component)
         {

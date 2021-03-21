@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
@@ -10,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LawFirmDatabaseImplement.Implements
 {
-    public class DocumentStorage: IDocumentStorage
+    public class DocumentStorage : IDocumentStorage
     {
         public List<DocumentViewModel> GetFullList()
         {
@@ -18,21 +17,21 @@ namespace LawFirmDatabaseImplement.Implements
             {
                 return context.Documents.Include(rec => rec.DocumentComponents)
                     .ThenInclude(rec => rec.Component).ToList().Select(rec => new DocumentViewModel
-                    { 
+                    {
                         Id = rec.Id,
                         DocumentName = rec.DocumentName,
                         Price = rec.Price,
                         DocumentComponents = rec.DocumentComponents
-                        .ToDictionary(recPC => recPC.ComponentId, 
+                        .ToDictionary(recPC => recPC.ComponentId,
                         recPC => (recPC.Component?.ComponentName, recPC.Count))
                     })
                     .ToList();
-            } 
+            }
         }
         public List<DocumentViewModel> GetFilteredList(DocumentBindingModel model)
         {
-            if (model == null) 
-            { 
+            if (model == null)
+            {
                 return null;
             }
             using (var context = new LawFirmDatabase())
@@ -42,12 +41,12 @@ namespace LawFirmDatabaseImplement.Implements
                     .Where(rec => rec.DocumentName.Contains(model.DocumentName))
                     .ToList().Select(rec => new DocumentViewModel
                     {
-                    Id = rec.Id,
-                    DocumentName = rec.DocumentName,
-                    Price = rec.Price,
-                    DocumentComponents = rec.DocumentComponents.ToDictionary(recPC => recPC.ComponentId,
+                        Id = rec.Id,
+                        DocumentName = rec.DocumentName,
+                        Price = rec.Price,
+                        DocumentComponents = rec.DocumentComponents.ToDictionary(recPC => recPC.ComponentId,
                     recPC => (recPC.Component?.ComponentName, recPC.Count))
-                }).ToList();
+                    }).ToList();
             }
         }
         public DocumentViewModel GetElement(DocumentBindingModel model)

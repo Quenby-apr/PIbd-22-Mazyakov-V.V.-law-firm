@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
@@ -66,16 +65,16 @@ namespace LawFirmDatabaseImplement.Implements
             {
                 return context.Orders.Include(rec => rec.Document)
                     .Select(rec => new OrderViewModel
-                {
-                    Id = rec.Id,
-                    DocumentId = rec.DocumentId,
-                    DocumentName = rec.Document.DocumentName,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement
-                }).ToList();
+                    {
+                        Id = rec.Id,
+                        DocumentId = rec.DocumentId,
+                        DocumentName = rec.Document.DocumentName,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement
+                    }).ToList();
             }
         }
 
