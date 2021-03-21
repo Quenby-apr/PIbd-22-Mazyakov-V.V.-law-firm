@@ -1,6 +1,6 @@
 ﻿namespace LawFirm
 {
-    partial class FormComponentsByDocument
+    partial class FormReportDocumentComponents
     {
         /// <summary>
         /// Required designer variable.

@@ -5,6 +5,9 @@ using LawFirmBusinessLogic.Enums;
 
 namespace LawFirmBusinessLogic.ViewModels
 {
+    /// <summary>   
+    /// Отчёт по заказам   
+    /// </summary>
     public class ReportOrdersViewModel
     {
         public DateTime DateCreate { get; set; }

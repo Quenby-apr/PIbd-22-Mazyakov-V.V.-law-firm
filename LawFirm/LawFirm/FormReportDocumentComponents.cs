@@ -13,12 +13,12 @@ using Unity;
 
 namespace LawFirm
 {
-    public partial class FormComponentsByDocument : Form
+    public partial class FormReportDocumentComponents : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly ReportLogic logic;
-        public FormComponentsByDocument(ReportLogic logic)
+        public FormReportDocumentComponents(ReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;

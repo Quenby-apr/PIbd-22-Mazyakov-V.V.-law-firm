@@ -35,7 +35,8 @@ WordTextProperties {Bold = true, Size = "24", } ) },
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
                         Texts = new List<(string, WordTextProperties)> {
-(component.ComponentName, new WordTextProperties { Size = "24", }) },
+                        (component.ComponentName, new WordTextProperties {Bold = true, Size = "24", }
+                            ) },
                         TextProperties = new WordTextProperties
                         {
                             Size = "24",

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LawFirmBusinessLogic.ViewModels
 {
+    /// <summary>   
+    /// Отчёт по компонентам документов 
+    /// </summary>
     public class ReportDocumentComponentViewModel
     {
         public string ComponentName { get; set; }
