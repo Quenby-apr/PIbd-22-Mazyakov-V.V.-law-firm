@@ -81,7 +81,7 @@
             // 
             // buttonPDF
             // 
-            this.buttonPDF.Location = new System.Drawing.Point(695, 9);
+            this.buttonPDF.Location = new System.Drawing.Point(852, 12);
             this.buttonPDF.Name = "buttonPDF";
             this.buttonPDF.Size = new System.Drawing.Size(75, 23);
             this.buttonPDF.TabIndex = 5;
@@ -95,14 +95,14 @@
             this.reportViewer.Location = new System.Drawing.Point(0, 42);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(801, 409);
+            this.reportViewer.Size = new System.Drawing.Size(939, 409);
             this.reportViewer.TabIndex = 6;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(939, 450);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonPDF);
             this.Controls.Add(this.buttonForm);
@@ -111,7 +111,7 @@
             this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormReportOrders";
-            this.Text = "FormClientOrders";
+            this.Text = "Заказы клиентов";
             this.Load += new System.EventHandler(this.FormReportOrders_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -83,7 +83,7 @@ componentStorage, IOrderStorage orderStorage)
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список компонентов",
                 Components = _componentStorage.GetFullList()
             });
         }
@@ -96,7 +96,7 @@ componentStorage, IOrderStorage orderStorage)
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список компонентов",
                 DocumentComponents = GetDocumentComponent()
             });
         }

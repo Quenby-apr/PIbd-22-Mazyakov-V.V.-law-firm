@@ -11,7 +11,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSetOrder">
+    <DataSet Name="DataSetOrders">
       <Query>
         <DataSourceName>LawFirmBusinessLogicViewModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -59,6 +59,7 @@
                     <Value>Заказы</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -441,10 +442,11 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DataSetOrder</DataSetName>
-            <Top>0.89641cm</Top>
+            <DataSetName>DataSetOrders</DataSetName>
+            <Top>1.784cm</Top>
+            <Left>0.03528cm</Left>
             <Height>2.11984cm</Height>
-            <Width>24.47396cm</Width>
+            <Width>24.47395cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -468,8 +470,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>3.93912cm</Top>
-            <Left>16.70085cm</Left>
+            <Top>4.23016cm</Top>
+            <Left>16.63029cm</Left>
             <Height>0.6cm</Height>
             <Width>1.98882cm</Width>
             <ZIndex>2</ZIndex>
@@ -497,7 +499,7 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <Top>3.93912cm</Top>
+            <Top>4.23016cm</Top>
             <Left>18.68967cm</Left>
             <Height>0.6cm</Height>
             <Width>1.94438cm</Width>
@@ -512,11 +514,46 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="ReportParameterPeriod">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ReportParameterPeriod.Value</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ReportParameterPeriod</rd:DefaultName>
+            <Top>0.82931cm</Top>
+            <Left>6.61141cm</Left>
+            <Height>0.85231cm</Height>
+            <Width>11.36354cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2in</Height>
         <Style />
       </Body>
-      <Width>9.63542in</Width>
+      <Width>9.6493in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

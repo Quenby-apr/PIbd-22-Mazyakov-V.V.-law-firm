@@ -126,7 +126,7 @@ namespace LawFirmView
                 }
             }
         }
-        private void ComponentProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ComponentDocumentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportDocumentComponents>();
             form.ShowDialog();
