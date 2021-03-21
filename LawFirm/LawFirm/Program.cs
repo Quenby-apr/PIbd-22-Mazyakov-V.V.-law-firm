@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.BusinessLogics;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmDatabaseImplement.Implements;
@@ -30,6 +31,7 @@ namespace LawFirmView
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<DocumentLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
