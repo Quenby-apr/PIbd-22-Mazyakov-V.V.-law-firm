@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
@@ -8,7 +9,7 @@ using LawFirmFileImplement.Models;
 
 namespace LawFirmFileImplement.Implements
 {
-    public class OrderStorage : IOrderStorage
+    public class OrderStorage: IOrderStorage
     {
         private readonly FileDataListSingleton source;
         public OrderStorage()
@@ -39,7 +40,7 @@ namespace LawFirmFileImplement.Implements
                 return null;
             }
             var order = source.Orders
-            .FirstOrDefault(rec => rec.Id == model.Id);
+            .FirstOrDefault(rec =>  rec.Id == model.Id);
             return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
