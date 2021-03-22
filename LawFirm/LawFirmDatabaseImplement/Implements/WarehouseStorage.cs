@@ -177,13 +177,12 @@ namespace LawFirmDatabaseImplement.Implements
                                 .Where(warehouse => warehouse.ComponentId == warehouseComponent.Key);
 
                             int totalCount = warehouseComponents.Sum(warehouse => warehouse.Count);
-                            //WarehouseComponent warehouse_comp=null;//для костыля
                             foreach (WarehouseComponent component in warehouseComponents)
                             {
                                 if (component.Count <= count)
                                 {
                                     count -= component.Count;
-                                    context.WarehouseComponents.Remove(component);//при другом решении закомментить
+                                    context.WarehouseComponents.Remove(component);
                                     context.SaveChanges();
                                 }
 
@@ -196,24 +195,14 @@ namespace LawFirmDatabaseImplement.Implements
 
                                 if (count == 0)
                                 {
-                                    break;
+                                    transaction.Commit();
+                                    return true;
                                 }
-
-
-                                /*Костыль без проверки, но с проверкой на последнюю итерацию foreach
-                                  warehouse_comp = component;
-                             */
+                               
                             }
-
-                           /* context.WarehouseComponents.Find(warehouse_comp).Count -= count;
-                            context.SaveChanges();*/
-                            if (count != 0)
-                            {
-                                throw new Exception("нехватка компонентов на складах");
-                            }
+                            throw new Exception("нехватка компонентов на складах");
                         }
-                        transaction.Commit();
-                        return true;
+                        return false;
                     }
                     catch
                     {
