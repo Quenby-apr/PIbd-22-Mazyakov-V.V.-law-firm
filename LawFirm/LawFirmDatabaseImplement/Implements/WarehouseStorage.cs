@@ -195,14 +195,16 @@ namespace LawFirmDatabaseImplement.Implements
 
                                 if (count == 0)
                                 {
-                                    transaction.Commit();
-                                    return true;
+                                    break;
                                 }
-                               
                             }
-                            throw new Exception("нехватка компонентов на складах");
+                            if (count!=0)
+                            {
+                                throw new Exception("Недостаточно компонентов");
+                            }
                         }
-                        return false;
+                        transaction.Commit();
+                        return true;
                     }
                     catch
                     {
