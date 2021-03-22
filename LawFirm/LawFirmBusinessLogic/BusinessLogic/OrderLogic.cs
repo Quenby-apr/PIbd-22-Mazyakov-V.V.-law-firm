@@ -60,7 +60,6 @@ namespace LawFirmBusinessLogic.BusinessLogics
             }
             if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
             {
-                Console.WriteLine("не работает");
                 throw new Exception("Недостаточно компонентов");
             }
             _orderStorage.Update(new OrderBindingModel
