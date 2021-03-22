@@ -58,7 +58,8 @@ namespace LawFirmBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
+            if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel
+            { Id = order.DocumentId }).DocumentComponents, order.Count))
             {
                 Console.WriteLine("не работает");
                 throw new Exception("Недостаточно компонентов");

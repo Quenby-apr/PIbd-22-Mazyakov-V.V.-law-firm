@@ -20,5 +20,7 @@ namespace LawFirmDatabaseImplement
         public virtual DbSet<Document> Documents { set; get; }
         public virtual DbSet<DocumentComponent> DocumentComponents { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }
