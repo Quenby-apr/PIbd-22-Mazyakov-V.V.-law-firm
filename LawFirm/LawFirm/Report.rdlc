@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -70,7 +70,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Height>0.75875cm</Height>
-            <Width>24.47396cm</Width>
+            <Width>24.13881cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -85,19 +85,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>5.37146cm</Width>
+                  <Width>5.29738cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>10.79542cm</Width>
+                  <Width>10.72134cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.48751cm</Width>
+                  <Width>2.41343cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.41999cm</Width>
+                  <Width>2.34591cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.39957cm</Width>
+                  <Width>3.32549cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -398,7 +398,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Status.Value</Value>
+                                  <Value>=Enum.GetName(First(Fields!Status.Value).GetType(), Fields!Status.Value)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -446,7 +446,7 @@
             <Top>1.784cm</Top>
             <Left>0.03528cm</Left>
             <Height>2.11984cm</Height>
-            <Width>24.47395cm</Width>
+            <Width>24.10355cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -550,10 +550,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>2.04167in</Height>
         <Style />
       </Body>
-      <Width>9.6493in</Width>
+      <Width>9.7118in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
