@@ -30,19 +30,19 @@ componentStorage, IOrderStorage orderStorage)
             var components = _componentStorage.GetFullList();
             var documents = _documentStorage.GetFullList();
             var list = new List<ReportDocumentComponentViewModel>();
-            foreach (var component in components)
+            foreach (var document in documents)
             {
                 var record = new ReportDocumentComponentViewModel
                 {
-                    ComponentName = component.ComponentName,
-                    Documents = new List<Tuple<string, int>>(),
+                    DocumentName = document.DocumentName,
+                    Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var document in documents)
+                foreach (var component in components)
                 {
                     if (document.DocumentComponents.ContainsKey(component.Id))
                     {
-                        record.Documents.Add(new Tuple<string, int>(document.DocumentName,
+                        record.Components.Add(new Tuple<string, int>(component.ComponentName,
                        document.DocumentComponents[component.Id].Item2));
                         record.TotalCount +=
                        document.DocumentComponents[component.Id].Item2;
@@ -83,8 +83,8 @@ componentStorage, IOrderStorage orderStorage)
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонентов",
-                Components = _componentStorage.GetFullList()
+                Title = "Список документов",
+                Documents = _documentStorage.GetFullList()
             });
         }
         /// <summary>

@@ -71,11 +71,11 @@ namespace LawFirmBusinessLogic.BusinessLogic
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = pc.ComponentName,
+                        Text = pc.DocumentName,
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var document in pc.Documents)
+                    foreach (var component in pc.Components)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
@@ -83,7 +83,7 @@ namespace LawFirmBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "B",
                             RowIndex = rowIndex,
-                            Text = document.Item1,
+                            Text = component.Item1,
                             StyleIndex = 1U
                         });
                         InsertCellInWorksheet(new ExcelCellParameters
@@ -92,11 +92,20 @@ namespace LawFirmBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = document.Item2.ToString(),
+                            Text = component.Item2.ToString(),
                             StyleIndex = 1U
                         });
                         rowIndex++;
                     }
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = "Итого",
+                        StyleIndex = 0U
+                    });
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,

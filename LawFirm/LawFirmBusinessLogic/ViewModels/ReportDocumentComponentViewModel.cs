@@ -8,8 +8,8 @@ namespace LawFirmBusinessLogic.ViewModels
     /// </summary>
     public class ReportDocumentComponentViewModel
     {
-        public string ComponentName { get; set; }
+        public string DocumentName { get; set; }
         public int TotalCount { get; set; }
-        public List<Tuple<string, int>> Documents { get; set; }
+        public List<Tuple<string, int>> Components { get; set; }
     }
 }

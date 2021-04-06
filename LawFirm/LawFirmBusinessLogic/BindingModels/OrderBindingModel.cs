@@ -10,7 +10,6 @@ namespace LawFirmBusinessLogic.BindingModels
     ///  </summary>
     public class OrderBindingModel
     {
-
         public int? Id { get; set; }
         public int DocumentId { get; set; }
         public int Count { get; set; }
