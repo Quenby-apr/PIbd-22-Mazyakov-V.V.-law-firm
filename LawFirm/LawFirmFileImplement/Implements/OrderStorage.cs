@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
@@ -9,7 +8,7 @@ using LawFirmFileImplement.Models;
 
 namespace LawFirmFileImplement.Implements
 {
-    public class OrderStorage: IOrderStorage
+    public class OrderStorage : IOrderStorage
     {
         private readonly FileDataListSingleton source;
         public OrderStorage()
@@ -29,9 +28,13 @@ namespace LawFirmFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where((rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
-            .Select(CreateModel)
-            .ToList();
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                 rec.DateCreate.Date == model.DateCreate.Date) ||
+                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
+                >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                 (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                 .Select(CreateModel)
+                 .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -40,7 +43,7 @@ namespace LawFirmFileImplement.Implements
                 return null;
             }
             var order = source.Orders
-            .FirstOrDefault(rec =>  rec.Id == model.Id);
+            .FirstOrDefault(rec => rec.Id == model.Id);
             return order != null ? CreateModel(order) : null;
         }
         public void Insert(OrderBindingModel model)
@@ -72,6 +75,7 @@ namespace LawFirmFileImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
             order.Sum = model.Sum;
@@ -93,6 +97,7 @@ namespace LawFirmFileImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 DocumentId = order.DocumentId,
                 DocumentName = source.Documents.FirstOrDefault(x => x.Id == order.DocumentId)?.DocumentName,
                 Count = order.Count,

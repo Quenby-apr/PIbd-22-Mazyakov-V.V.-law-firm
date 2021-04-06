@@ -43,7 +43,11 @@ namespace LawFirmListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if ((order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo))
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                 order.DateCreate.Date == model.DateCreate.Date) ||
+                 (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date
+                >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date) ||
+                 (model.ClientId.HasValue && order.ClientId == model.ClientId))
                 { 
                     result.Add(CreateModel(order));
                 }
@@ -105,6 +109,7 @@ namespace LawFirmListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.DocumentId = model.DocumentId;
+            order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -125,6 +130,7 @@ namespace LawFirmListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 DocumentId = order.DocumentId,
                 DocumentName = documentName,
                 Count = order.Count,
