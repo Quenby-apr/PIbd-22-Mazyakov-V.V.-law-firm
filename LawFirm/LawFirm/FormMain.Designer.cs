@@ -79,14 +79,14 @@
             // компонентыToolStripMenuItem
             // 
             this.компонентыToolStripMenuItem.Name = "компонентыToolStripMenuItem";
-            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.компонентыToolStripMenuItem.Text = "Компоненты";
             this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.КомпонентыToolStripMenuItem_Click);
             // 
             // документыToolStripMenuItem
             // 
             this.документыToolStripMenuItem.Name = "документыToolStripMenuItem";
-            this.документыToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.документыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.документыToolStripMenuItem.Text = "Документы";
             this.документыToolStripMenuItem.Click += new System.EventHandler(this.ДокументыToolStripMenuItem_Click);
             // 
@@ -104,7 +104,7 @@
             // 
             this.списокКомпонентовToolStripMenuItem.Name = "списокКомпонентовToolStripMenuItem";
             this.списокКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.списокКомпонентовToolStripMenuItem.Text = "Список компонентов";
+            this.списокКомпонентовToolStripMenuItem.Text = "Список документов";
             this.списокКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
             // компонентыПоИзделиямToolStripMenuItem
