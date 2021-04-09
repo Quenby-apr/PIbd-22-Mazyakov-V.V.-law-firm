@@ -186,7 +186,7 @@ namespace LawFirmDatabaseImplement.Migrations
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.WarehouseComponent", b =>
                 {
                     b.HasOne("LawFirmDatabaseImplement.Models.Component", "Component")
-                        .WithMany()
+                        .WithMany("WarehouseComponents")
                         .HasForeignKey("ComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
