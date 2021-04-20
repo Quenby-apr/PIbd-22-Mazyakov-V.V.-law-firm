@@ -19,15 +19,12 @@ namespace LawFirmBusinessLogic.ViewModels
         public int ClientId { get; set; }
         [DataMember]
         public int DocumentId { get; set; }
-        public int? ImplementerId { get; set; }
         [DataMember]
         [DisplayName("Клиент")]
         public string ClientFIO { get; set; }
         [DataMember]
         [DisplayName("Изделие")]
         public string DocumentName { get; set; }
-        [DisplayName("Исполнитель")]
-        public string ImplementerFIO { get; set; }
         [DataMember]
         [DisplayName("Количество")]
         public int Count { get; set; }
@@ -43,6 +40,5 @@ namespace LawFirmBusinessLogic.ViewModels
         [DataMember]
         [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
-        public bool? FreeOrders { get; set; }
     }
 }

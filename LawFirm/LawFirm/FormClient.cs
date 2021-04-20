@@ -8,39 +8,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
-using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmBusinessLogic.BusinessLogics;
 using Unity;
 
 namespace LawFirm
 {
-    public partial class FormImplementer : Form
+    public partial class FormClient : Form
     {
-        [Dependency]
+        [Dependency] 
         public new IUnityContainer Container { get; set; }
         public int Id
         {
             set { id = value; }
         }
-        private readonly ImplementerLogic logic;
+        private readonly ClientLogic logic;
         private int? id;
-        public FormImplementer(ImplementerLogic logic)
+        public FormClient(ClientLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
 
-        private void FormImplementer_Load(object sender, EventArgs e)
+        private void FormClient_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    var view = logic.Read(new ImplementerBindingModel { Id = id })?[0];
+                    var view = logic.Read(new ClientBindingModel { Id = id })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ImplementerFIO;
-                        textBoxOrder.Text = view.WorkingTime.ToString();
-                        textBoxPause.Text = view.PauseTime.ToString();
+                        textBoxName.Text = view.ClientFIO;
+                        textBoxLogin.Text = view.Email;
+                        textBoxPassword.Text = view.Password;
                     }
                 }
                 catch (Exception ex)
@@ -56,22 +56,22 @@ namespace LawFirm
             {
                 MessageBox.Show("Заполните ФИО", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
-            if (string.IsNullOrEmpty(textBoxOrder.Text))
+            if (string.IsNullOrEmpty(textBoxLogin.Text))
             {
-                MessageBox.Show("Заполните поле времени заказа", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                MessageBox.Show("Заполните поле почты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
-            if (string.IsNullOrEmpty(textBoxPause.Text))
+            if (string.IsNullOrEmpty(textBoxPassword.Text))
             {
-                MessageBox.Show("Заполните поле перерыва", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                MessageBox.Show("Заполните пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
             try
             {
-                logic.CreateOrUpdate(new ImplementerBindingModel
+                logic.CreateOrUpdate(new ClientBindingModel
                 {
                     Id = id,
-                    ImplementerFIO = textBoxName.Text,
-                    WorkingTime = Convert.ToInt32(textBoxOrder.Text),
-                    PauseTime = Convert.ToInt32(textBoxPause.Text)
+                    ClientFIO = textBoxName.Text,
+                    Email = textBoxLogin.Text,
+                    Password = textBoxPassword.Text
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK; Close();
