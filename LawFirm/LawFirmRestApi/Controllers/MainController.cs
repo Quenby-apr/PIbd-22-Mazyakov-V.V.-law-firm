@@ -26,12 +26,10 @@ namespace LawFirmRestApi.Controllers
         [HttpGet]
         public List<DocumentViewModel> GetDocumentList() => _document.Read(null)?.ToList();
         [HttpGet]
-        public DocumentViewModel GetDocument(int documentId) => _document.Read(new
-       DocumentBindingModel
+        public DocumentViewModel GetDocument(int documentId) => _document.Read(new DocumentBindingModel
         { Id = documentId })?[0];
         [HttpGet]
-        public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new
-       OrderBindingModel
+        public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new  OrderBindingModel
         { ClientId = clientId });
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) =>
