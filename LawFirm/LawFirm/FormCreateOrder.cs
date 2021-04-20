@@ -97,7 +97,9 @@ namespace LawFirmView
                 {
                     DocumentId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToDecimal(textBoxSum.Text)
+                    Sum = Convert.ToDecimal(textBoxSum.Text),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                    
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

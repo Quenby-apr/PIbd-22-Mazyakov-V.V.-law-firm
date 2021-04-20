@@ -8,24 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
-using LawFirmBusinessLogic.BusinessLogics;
+using LawFirmBusinessLogic.BusinessLogic;
 using Unity;
 
 namespace LawFirm
 {
-    public partial class FormClients : Form
+    public partial class FormImplementers : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ClientLogic logic;
-        public FormClients(ClientLogic logic)
+        private readonly ImplementerLogic logic;
+        public FormImplementers(ImplementerLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
-
-        private void FormClients_Load(object sender, EventArgs e)
+        private void FormImplementers_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -48,7 +47,28 @@ namespace LawFirm
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void ButtonDel_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementer>();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormImplementer>();
+                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -57,7 +77,7 @@ namespace LawFirm
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.Delete(new ClientBindingModel { Id = id });
+                        logic.Delete(new ImplementerBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -67,7 +87,8 @@ namespace LawFirm
                 }
             }
         }
-        private void ButtonRef_Click(object sender, EventArgs e)
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
