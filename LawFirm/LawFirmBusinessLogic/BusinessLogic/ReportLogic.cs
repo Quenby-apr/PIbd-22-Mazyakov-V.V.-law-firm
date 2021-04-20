@@ -95,7 +95,7 @@ namespace LawFirmBusinessLogic.BusinessLogic
         public List<ReportOrdersByDateViewModel> GetOrdersInfoByDate()
         {
             return _orderStorage.GetFullList()
-                .GroupBy(order => order.DateCreate.ToShortDateString())
+                .GroupBy(order => order.DateCreate.ToLongDateString())
                 .Select(rec => new ReportOrdersByDateViewModel
                 {
                     Date = Convert.ToDateTime(rec.Key),
