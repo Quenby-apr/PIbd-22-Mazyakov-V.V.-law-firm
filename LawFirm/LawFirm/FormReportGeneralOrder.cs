@@ -56,7 +56,7 @@ namespace LawFirm
             {
                 var dataSource = logic.GetOrdersInfoByDate();
 
-                ReportDataSource source = new ReportDataSource("DataSetOrdersByDate", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSet", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -65,6 +65,11 @@ namespace LawFirm
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void FormReportGeneralOrder_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

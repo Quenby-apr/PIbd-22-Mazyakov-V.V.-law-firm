@@ -347,6 +347,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="ReportGeneralOders.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\LawFirm.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\LawFirm.Properties.Settings.datasource" />
@@ -367,7 +368,10 @@
     <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.DocumentViewModel.datasource" />
     <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.ReportDocumentComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.ReportOrdersByDateViewModel.datasource" />
     <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.ReportWarehouseComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\LawFirmBusinessLogic.ViewModels.WarehouseViewModel.datasource" />
     <None Include="Properties\DataSources\LawFirmView.FormComponent.datasource" />
     <None Include="Properties\DataSources\LawFirmView.FormComponents.datasource" />
     <None Include="Properties\DataSources\LawFirmView.FormCreateOrder.datasource" />

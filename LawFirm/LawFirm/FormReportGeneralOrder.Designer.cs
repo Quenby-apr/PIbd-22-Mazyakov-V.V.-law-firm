@@ -28,14 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.buttonPDF = new System.Windows.Forms.Button();
             this.buttonForm = new System.Windows.Forms.Button();
+            this.ReportOrdersByDateViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersByDateViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer
             // 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "LawFirm.Report.rdlc";
+            reportDataSource1.Name = "DataSetGeneralOrders";
+            reportDataSource1.Value = this.ReportOrdersByDateViewModelBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "LawFirm.ReportGeneralOders.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 50);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
@@ -62,6 +69,10 @@
             this.buttonForm.UseVisualStyleBackColor = true;
             this.buttonForm.Click += new System.EventHandler(this.buttonForm_Click);
             // 
+            // ReportOrdersByDateViewModelBindingSource
+            // 
+            this.ReportOrdersByDateViewModelBindingSource.DataSource = typeof(LawFirmBusinessLogic.ViewModels.ReportOrdersByDateViewModel);
+            // 
             // FormReportGeneralOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,6 +83,8 @@
             this.Controls.Add(this.buttonForm);
             this.Name = "FormReportGeneralOrder";
             this.Text = "Отчёт по заказам";
+            this.Load += new System.EventHandler(this.FormReportGeneralOrder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersByDateViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -81,5 +94,6 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.Button buttonPDF;
         private System.Windows.Forms.Button buttonForm;
+        private System.Windows.Forms.BindingSource ReportOrdersByDateViewModelBindingSource;
     }
 }
