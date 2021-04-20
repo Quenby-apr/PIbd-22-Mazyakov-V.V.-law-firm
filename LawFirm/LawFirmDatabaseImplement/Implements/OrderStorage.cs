@@ -114,7 +114,7 @@ namespace LawFirmDatabaseImplement.Implements
                         {
                             throw new Exception("Элемент не найден");
                         }
-                        CreateModel(model, element, context);
+                        CreateModel(model, element);
                         context.SaveChanges();
                         transaction.Commit();
                     }
