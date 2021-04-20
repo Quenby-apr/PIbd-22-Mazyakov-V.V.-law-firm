@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using LawFirm;
 using LawFirmBusinessLogic.BindingModels;
+using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.BusinessLogics;
 using Unity;
 
@@ -18,10 +13,12 @@ namespace LawFirmView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        public FormMain(OrderLogic orderLogic)
+        private ReportLogic report;
+        public FormMain(OrderLogic orderLogic, ReportLogic report)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
+            this.report = report;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -114,16 +111,31 @@ namespace LawFirmView
         {
             LoadData();
         }
-        private void ПополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormWarehouseRefill>();
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.SaveComponentsToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void ComponentDocumentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportDocumentComponents>();
             form.ShowDialog();
         }
-
-        private void СкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormWarehouses>();
+            var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
     }
 }
+

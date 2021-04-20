@@ -32,7 +32,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             {
                 DocumentName = model.DocumentName
             });
-            if (element != null && element.Id != model.Id)
+            if (element != null && element.Id != model.Id)  
             {
                 throw new Exception("Уже есть изделие с таким названием");
             }

@@ -44,7 +44,9 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using (var context = new LawFirmDatabase())
             {
-                return context.Orders.Include(rec => rec.Document).Where(rec => rec.Id.Equals(model.Id))
+                return context.Orders.Include(rec => rec.Document)
+                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
                     .ToList().Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
@@ -86,7 +88,7 @@ namespace LawFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Orders.Add(CreateModel(model, new Order(), context));
+                        context.Orders.Add(CreateModel(model, new Order()));
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -141,7 +143,7 @@ namespace LawFirmDatabaseImplement.Implements
                 }
             }
         }
-        private Order CreateModel(OrderBindingModel model, Order order, LawFirmDatabase context)
+        private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.DocumentId = model.DocumentId;
             order.Count = model.Count;
