@@ -409,5 +409,121 @@ cellParameters.CellReference).Count() > 0)
             };
             mergeCells.Append(mergeCell);
         }
+        public static void CreateWarehouseDoc(ExcelWarehouseInfo info)
+        {
+            using (SpreadsheetDocument spreadsheetDocument =
+                SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                CreateStyles(workbookPart);
+
+                SharedStringTablePart shareStringPart = spreadsheetDocument.WorkbookPart
+                    .GetPartsOfType<SharedStringTablePart>().Count() > 0
+                    ?
+                    spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+                    :
+                    spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+
+                if (shareStringPart.SharedStringTable == null)
+                {
+                    shareStringPart.SharedStringTable = new SharedStringTable();
+                }
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets());
+                Sheet sheet = new Sheet
+                {
+                    Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
+                    SheetId = 1,
+                    Name = "Лист"
+                };
+                sheets.Append(sheet);
+
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "A",
+                    RowIndex = 1,
+                    Text = info.Title,
+                    StyleIndex = 2U
+                });
+
+                MergeCells(new ExcelMergeParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    CellFromName = "A1",
+                    CellToName = "C1"
+                });
+
+                uint rowIndex = 2;
+
+                foreach (var warehouseComponent in info.WarehouseComponents)
+                {
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = warehouseComponent.WarehouseName,
+                        StyleIndex = 0U
+                    });
+
+                    rowIndex++;
+
+                    foreach (var component in warehouseComponent.Components)
+                    {
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "B",
+                            RowIndex = rowIndex,
+                            Text = component.Item1,
+                            StyleIndex = 1U
+                        });
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "C",
+                            RowIndex = rowIndex,
+                            Text = component.Item2.ToString(),
+                            StyleIndex = 1U
+                        });
+
+                        rowIndex++;
+                    }
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = "Итого",
+                        StyleIndex = 0U
+                    });
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "C",
+                        RowIndex = rowIndex,
+                        Text = warehouseComponent.TotalCount.ToString(),
+                        StyleIndex = 0U
+                    });
+
+                    rowIndex++;
+                }
+
+                workbookPart.Workbook.Save();
+            }
+        }
     }
 }
