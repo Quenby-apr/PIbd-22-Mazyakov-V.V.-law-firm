@@ -83,8 +83,6 @@
             this.Controls.Add(this.buttonForm);
             this.Name = "FormReportGeneralOrder";
             this.Text = "Отчёт по заказам";
-            this.Load += new System.EventHandler(this.FormReportGeneralOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersByDateViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
