@@ -66,10 +66,5 @@ namespace LawFirm
                 return;
             }
         }
-
-        private void FormReportGeneralOrder_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
