@@ -133,6 +133,7 @@ namespace LawFirmListImplement.Implements
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ClientFIO = clientFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = documentName,
                 Count = order.Count,

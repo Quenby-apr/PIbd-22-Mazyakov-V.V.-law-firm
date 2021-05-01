@@ -157,7 +157,7 @@ namespace LawFirmDatabaseImplement.Migrations
 
             modelBuilder.Entity("LawFirmDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("LawFirmDatabaseImplement.Models.Client", null)
+                    b.HasOne("LawFirmDatabaseImplement.Models.Client", "Client")
                         .WithMany("Order")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)

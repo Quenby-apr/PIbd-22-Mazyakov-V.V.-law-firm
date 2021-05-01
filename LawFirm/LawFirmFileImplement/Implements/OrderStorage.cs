@@ -102,6 +102,7 @@ namespace LawFirmFileImplement.Implements
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.ClientFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = source.Documents.FirstOrDefault(x => x.Id == order.DocumentId)?.DocumentName,
                 Count = order.Count,
