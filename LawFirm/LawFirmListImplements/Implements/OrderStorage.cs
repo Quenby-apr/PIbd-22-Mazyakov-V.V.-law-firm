@@ -122,11 +122,19 @@ namespace LawFirmListImplement.Implements
         private OrderViewModel CreateModel(Order order)
         {
             string documentName = null;
+            string clientFIO = null;
             foreach (var document in source.Documents)
             {
                 if (document.Id == order.DocumentId)
                 {
                     documentName = document.DocumentName;
+                }
+            }
+            foreach (var client in source.Clients)
+            {
+                if (client.Id == order.ClientId)
+                {
+                    clientFIO = client.ClientFIO;
                 }
             }
             return new OrderViewModel
