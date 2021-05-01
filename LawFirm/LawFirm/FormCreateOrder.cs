@@ -20,11 +20,13 @@ namespace LawFirmView
         public new IUnityContainer Container { get; set; }
         private readonly DocumentLogic _logicD;
         private readonly OrderLogic _logicO;
-        public FormCreateOrder(DocumentLogic logicD, OrderLogic logicO)
+        private readonly ClientLogic _logicC;
+        public FormCreateOrder(DocumentLogic logicD, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicD = logicD;
             _logicO = logicO;
+            _logicC = logicC;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
@@ -37,6 +39,14 @@ namespace LawFirmView
                     comboBoxDocument.DisplayMember = "DocumentName";
                     comboBoxDocument.ValueMember = "Id";
                     comboBoxDocument.SelectedItem = null;
+                }
+                var listClients = _logicC.Read(null);
+                if (list != null)
+                {
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -85,6 +95,7 @@ namespace LawFirmView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     DocumentId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
