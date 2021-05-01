@@ -46,14 +46,10 @@ namespace LawFirmDatabaseImplement.Implements
             }
             using (var context = new LawFirmDatabase())
             {
-                return context.Orders.Include(rec => rec.Document).Include(rec => rec.Client)
+               return context.Orders.Include(rec => rec.Document).Include(rec => rec.Client)
                    .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate == model.DateCreate) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
                 >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
-                   .ToList().Select(rec => new OrderViewModel
-                return context.Orders.Include(rec => rec.Document)
-                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
                     .ToList().Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
@@ -124,7 +120,7 @@ namespace LawFirmDatabaseImplement.Implements
                         {
                             throw new Exception("Элемент не найден");
                         }
-                        CreateModel(model, element, context);
+                        CreateModel(model, element);
                         context.SaveChanges();
                         transaction.Commit();
                     }
