@@ -27,8 +27,7 @@ namespace LawFirmRestApi.Controllers
             _mailLogic = mailLogic;
         }
         [HttpGet]
-        public ClientViewModel Login(string login, string password) => _logic.Read(new
-ClientBindingModel
+        public ClientViewModel Login(string login, string password) => _logic.Read(new ClientBindingModel
         { Email = login, Password = password })?[0];
         [HttpGet]
         public List<MessageInfoViewModel> GetMessages(int clientId) =>

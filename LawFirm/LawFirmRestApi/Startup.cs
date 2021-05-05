@@ -40,14 +40,6 @@ namespace LawFirmRestApi
             services.AddTransient<DocumentLogic>();
             services.AddTransient<MailLogic>();
             services.AddControllers().AddNewtonsoftJson();
-            MailLogic.MailConfig(new MailConfig
-            {
-                SmtpClientHost = Configuration["SmtpClientHost"],
-                SmtpClientPort =
-             Convert.ToInt32(Configuration["SmtpClientPort"]),
-                MailLogin = Configuration["MailLogin"],
-                MailPassword = Configuration["MailPassword"],
-            });
         }
 
 
