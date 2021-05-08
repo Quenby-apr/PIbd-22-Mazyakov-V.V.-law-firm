@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmRestApi", "LawFirmRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmClientApp", "LawFirmClientApp\LawFirmClientApp.csproj", "{60811B6A-4D22-466A-9536-A3F366189B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawFirmWarehouseApi", "LawFirmWarehouseApi\LawFirmWarehouseApi.csproj", "{D61D1C13-DBB8-45A0-829F-8AD498C7EE6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawFirmWarehouseApp", "LawFirmWarehouseApi\LawFirmWarehouseApp.csproj", "{D61D1C13-DBB8-45A0-829F-8AD498C7EE6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
