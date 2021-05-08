@@ -108,7 +108,7 @@ namespace LawFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        context.Orders.Add(CreateModel(model, new Order(), context));
+                        context.Orders.Add(CreateModel(model, new Order()));
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -128,13 +128,12 @@ namespace LawFirmDatabaseImplement.Implements
                 {
                     try
                     {
-                        var element = context.Orders.FirstOrDefault(rec => rec.Id ==
-                       model.Id);
+                        var element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
                         if (element == null)
                         {
                             throw new Exception("Элемент не найден");
                         }
-                        CreateModel(model, element, context);
+                        CreateModel(model, element);
                         context.SaveChanges();
                         transaction.Commit();
                     }
@@ -163,7 +162,7 @@ namespace LawFirmDatabaseImplement.Implements
                 }
             }
         }
-        private Order CreateModel(OrderBindingModel model, Order order, LawFirmDatabase context)
+        private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
