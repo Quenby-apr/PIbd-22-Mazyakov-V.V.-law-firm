@@ -126,6 +126,15 @@ namespace LawFirmListImplement.Implements
         {
             string documentName = null;
             string clientFIO = null;
+            string ImplementerFIO = null;
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.DocumentId)
+                {
+                    ImplementerFIO = implementer.ImplementerFIO;
+                }
+            }
+
             foreach (var document in source.Documents)
             {
                 if (document.Id == order.DocumentId)
