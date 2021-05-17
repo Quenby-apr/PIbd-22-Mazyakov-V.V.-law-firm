@@ -81,6 +81,7 @@ namespace LawFirmFileImplement.Implements
         {
             order.ClientId = (int)model.ClientId;
             order.DocumentId = model.DocumentId;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -105,6 +106,8 @@ namespace LawFirmFileImplement.Implements
                 ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.ClientFIO,
                 DocumentId = order.DocumentId,
                 DocumentName = source.Documents.FirstOrDefault(x => x.Id == order.DocumentId)?.DocumentName,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.ImplementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
