@@ -61,8 +61,8 @@ namespace LawFirm
                 logic.CreateOrUpdate(new ImplementerBindingModel { 
                     Id = id, 
                     ImplementerFIO = textBoxName.Text,
-                    WorkingTime = Convert.ToInt32(textBoxName.Text),
-                    PauseTime = Convert.ToInt32(textBoxName.Text)
+                    WorkingTime = Convert.ToInt32(textBoxWork.Text),
+                    PauseTime = Convert.ToInt32(textBoxPause.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK; Close();
