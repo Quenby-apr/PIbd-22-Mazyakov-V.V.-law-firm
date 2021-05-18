@@ -57,5 +57,15 @@ namespace LawFirmRestApi.Controllers
                     $" { _passwordMaxLength } должен быть и из цифр, букв и небуквенных символов должен состоять");
             }
         }
+        [HttpGet]
+        public PageViewModel GetPage(int pageSize, int page, int ClientId)
+        {
+            return new PageViewModel(_mailLogic.Count(), page, pageSize, _mailLogic.GetMessagesForPage(new MessageInfoBindingModel
+            {
+                Page = page,
+                PageSize = pageSize,
+                ClientId = ClientId
+            }));
+        }
     }
 }

@@ -79,5 +79,15 @@ namespace LawFirmListImplements.Implements
                 DateDelivery = messageInfo.DateDelivery
             };
         }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MessageInfoViewModel> GetMessagesForPage(MessageInfoBindingModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

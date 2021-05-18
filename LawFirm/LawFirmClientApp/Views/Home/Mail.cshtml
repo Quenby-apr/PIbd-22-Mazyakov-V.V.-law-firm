@@ -1,5 +1,5 @@
 ﻿@using LawFirmBusinessLogic.ViewModels
-@model List<MessageInfoViewModel>
+@model PageViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Messages)
                 {
                     <tr>
                         <td>
@@ -54,3 +54,27 @@
         </table>
     }
 </div>
+<div class="row" >
+    <div class="col-2"><input type="text" value="@(Model.PageNumber)" name="PageShow" readonly="readonly" size="3" /></div>
+    <div class="col-1">Страница:</div>
+    <div class="col-3" id="myPage"><input type="number"  name="Page" size="3" /></div>
+    <div asp-action="Mail" asp-route-page="@(Model.PageNumber = @myPage)" class="btn btn-outline-dark"> Перейти
+    </div>
+</div>
+@if (Model.HasPreviousPage)
+{
+    <a asp-action="Mail"
+       asp-route-page="@(Model.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        Назад
+    </a>
+}
+
+@if (Model.HasNextPage)
+{
+    <a asp-action="Mail"
+       asp-route-page="@(Model.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+    </a>
+}

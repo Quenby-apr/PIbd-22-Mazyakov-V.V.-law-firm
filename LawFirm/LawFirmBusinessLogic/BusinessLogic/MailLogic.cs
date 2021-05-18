@@ -143,5 +143,18 @@ namespace LawFirmBusinessLogic.BusinessLogic
                 });
             }
         }
+        public int Count()
+        {
+            return _messageInfoStorage.Count();
+        }
+
+        public List<MessageInfoViewModel> GetMessagesForPage(MessageInfoBindingModel model)
+        {
+            if (model == null || !model.Page.HasValue || !model.PageSize.HasValue)
+            {
+                return null;
+            }
+            return _messageInfoStorage.GetMessagesForPage(model);
+        }
     }
 }

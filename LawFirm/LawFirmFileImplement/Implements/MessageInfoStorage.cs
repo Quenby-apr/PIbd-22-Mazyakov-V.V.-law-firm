@@ -72,5 +72,15 @@ namespace LawFirmFileImplement.Implements
                 Body = model.Body
             });
         }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MessageInfoViewModel> GetMessagesForPage(MessageInfoBindingModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

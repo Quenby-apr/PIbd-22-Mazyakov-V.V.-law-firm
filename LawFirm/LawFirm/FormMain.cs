@@ -159,10 +159,6 @@ namespace LawFirmView
             var form = Container.Resolve<FormMails>();
             form.ShowDialog();
         }
-    }
-}
-
-
         private void клиентыToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormClients>();
