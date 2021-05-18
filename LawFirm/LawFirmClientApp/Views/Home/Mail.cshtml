@@ -1,5 +1,6 @@
 ﻿@using LawFirmBusinessLogic.ViewModels
 @model PageViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -54,12 +55,8 @@
         </table>
     }
 </div>
-<div class="row" >
+<div class="row">
     <div class="col-2"><input type="text" value="@(Model.PageNumber)" name="PageShow" readonly="readonly" size="3" /></div>
-    <div class="col-1">Страница:</div>
-    <div class="col-3" id="myPage"><input type="number"  name="Page" size="3" /></div>
-    <div asp-action="Mail" asp-route-page="@(Model.PageNumber = @myPage)" class="btn btn-outline-dark"> Перейти
-    </div>
 </div>
 @if (Model.HasPreviousPage)
 {
@@ -68,6 +65,11 @@
        class="btn btn-outline-dark">
         Назад
     </a>
+}
+
+@for (int i = Model.PageNumber >= 6 ? Model.PageNumber - 5 : 1; i <= Model.TotalPages && i <= Model.PageNumber + 5; ++i)
+{
+    <a asp-action="Mail" asp-route-page="@i">@i </a>
 }
 
 @if (Model.HasNextPage)
