@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmView;
 
 namespace LawFirm
 {
@@ -22,15 +23,14 @@ namespace LawFirm
 
         private void FormMails_Load(object sender, EventArgs e)
         {
-            var list = logic.Read(null);
-            if (list != null)
+            try
             {
-                dataGridViewMails.DataSource = list;
-                dataGridViewMails.Columns[0].Visible = false;
-                dataGridViewMails.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewMails.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewMails.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewMails.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                Program.ConfigGrid(logic.Read(null), dataGridViewMails);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
             }
         }
     }
