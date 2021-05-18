@@ -90,7 +90,13 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется,
                     ClientId = order.ClientId
-                });
+                };
+                if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
+                {
+                    orderModel.Status = OrderStatus.Нехватка_материалов;
+                    orderModel.ImplementerId = null;
+                }
+                _orderStorage.Update(orderModel);
                 MailLogic.MailSendAsync(new MailSendInfo
                 {
                     MailAddress = _clientStorage.GetElement(new ClientBindingModel
@@ -99,15 +105,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     })?.Email,
                     Subject = $"Заказ №{order.Id}",
                     Text = $"Заказ №{order.Id} передан в работу."
-                });
-                };
-                Console.WriteLine("prov");
-                if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
-                {
-                    orderModel.Status = OrderStatus.Нехватка_материалов;
-                    orderModel.ImplementerId = null;
-                }
-                _orderStorage.Update(orderModel);
+                });  
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
