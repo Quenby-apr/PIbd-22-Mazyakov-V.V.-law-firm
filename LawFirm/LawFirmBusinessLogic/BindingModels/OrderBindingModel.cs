@@ -15,6 +15,7 @@ namespace LawFirmBusinessLogic.BindingModels
         public int DocumentId { get; set; }
         public int? ImplementerId { get; set; }
         public bool? FreeOrders { get; set; }
+        public bool? NeedComponents { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
         public OrderStatus Status { get; set; }

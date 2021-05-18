@@ -200,7 +200,7 @@ namespace LawFirmDatabaseImplement.Implements
                             }
                             if (count!=0)
                             {
-                                throw new Exception("Недостаточно компонентов");
+                                return false;
                             }
                         }
                         transaction.Commit();

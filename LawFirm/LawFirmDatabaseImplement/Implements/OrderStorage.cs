@@ -57,7 +57,8 @@ namespace LawFirmDatabaseImplement.Implements
                 >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
                     (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status == OrderStatus.Принят) ||
                     (model.ImplementerId.HasValue && rec.ImplementerId ==
-                    model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+                    model.ImplementerId && rec.Status == OrderStatus.Выполняется)
+                || (model.NeedComponents.HasValue && model.NeedComponents.Value && rec.Status == OrderStatus.Нехватка_материалов))
                    .ToList().Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,

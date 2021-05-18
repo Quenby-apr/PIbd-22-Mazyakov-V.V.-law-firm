@@ -92,7 +92,7 @@ namespace LawFirmView
                         FileName = dialog.FileName
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                    MessageBoxIcon.Information);
                 }
             }
         }
@@ -106,24 +106,64 @@ namespace LawFirmView
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
+        private void пополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouseRefill>();
+            form.ShowDialog();
+        }
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
 
-        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void списокСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new
+
+            SaveFileDialog
+            { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.SaveWarehousesToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void компонентыПоСкладамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportWarehouseComponents>();
+            form.ShowDialog();
+        }
+
+        private void списокЗаказовЗаВесьПериодToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportGeneralOrder>();
+            form.ShowDialog();
+        }
+
+        private void запускРабоToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            workModeling.DoWork();
+            LoadData();
+        }
+
+        private void клиентыToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
 
-        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void исполнителиToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormImplementers>();
             form.ShowDialog();
         }
-
-        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            workModeling.DoWork();
-            LoadData();
-        }
     }
 }
-

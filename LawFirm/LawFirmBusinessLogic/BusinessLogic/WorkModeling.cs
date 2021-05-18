@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogics;
+using LawFirmBusinessLogic.Enums;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmBusinessLogic.ViewModels;
 
@@ -55,6 +56,11 @@ namespace LawFirmBusinessLogic.BusinessLogic
             var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new
             OrderBindingModel
             { ImplementerId = implementer.Id }));
+            var NeedComponentsOrders = await Task.Run(() => _orderStorage.GetFilteredList(new
+            OrderBindingModel
+            {
+                NeedComponents = true
+            }));
             foreach (var order in runOrders)
             {
                 // делаем работу заново
@@ -66,6 +72,25 @@ namespace LawFirmBusinessLogic.BusinessLogic
                 });
                 // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
+            }
+            foreach (var order in NeedComponentsOrders)
+            {
+                try
+                {
+                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+
+                    Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                    _orderLogic.FinishOrder(new ChangeStatusBindingModel {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+                    Thread.Sleep(implementer.PauseTime);
+                }
+                catch (Exception) { }
             }
             await Task.Run(() =>
             {

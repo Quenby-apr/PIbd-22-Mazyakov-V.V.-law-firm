@@ -58,7 +58,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Нехватка_материалов)
                 {
                     throw new Exception("Заказ не в статусе \"Принят\"");
                 }
@@ -66,7 +66,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
                 {
                     throw new Exception("У заказа уже есть исполнитель");
                 }
-                _orderStorage.Update(new OrderBindingModel
+                OrderBindingModel orderModel = new OrderBindingModel
                 {
                     Id = order.Id,
                     DocumentId = order.DocumentId,
@@ -77,7 +77,14 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется,
                     ClientId = order.ClientId
-                });
+                };
+                Console.WriteLine("prov");
+                if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
+                {
+                    orderModel.Status = OrderStatus.Нехватка_материалов;
+                    orderModel.ImplementerId = null;
+                }
+                _orderStorage.Update(orderModel);
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
