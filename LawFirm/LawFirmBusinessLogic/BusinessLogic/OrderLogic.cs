@@ -13,6 +13,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
         private readonly IOrderStorage _orderStorage;
         private readonly IDocumentStorage _documentStorage;
         private readonly IWarehouseStorage _warehouseStorage;
+        private readonly object locker = new object();
         public OrderLogic(IOrderStorage orderStorage, IDocumentStorage documentStorage, IWarehouseStorage warehouseStorage)
         {
             _orderStorage = orderStorage;
@@ -47,36 +48,37 @@ namespace LawFirmBusinessLogic.BusinessLogics
         }
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            var order = _orderStorage.GetElement(new OrderBindingModel
+            lock (locker)
             {
-                Id = model.OrderId
-            });
-            if (order == null)
-            {
-                throw new Exception("Не найден заказ");
+                var order = _orderStorage.GetElement(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                });
+                if (order == null)
+                {
+                    throw new Exception("Не найден заказ");
+                }
+                if (order.Status != OrderStatus.Принят)
+                {
+                    throw new Exception("Заказ не в статусе \"Принят\"");
+                }
+                if (order.ImplementerId.HasValue)
+                {
+                    throw new Exception("У заказа уже есть исполнитель");
+                }
+                _orderStorage.Update(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    DocumentId = order.DocumentId,
+                    ImplementerId = model.ImplementerId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется,
+                    ClientId = order.ClientId
+                });
             }
-            if (order.Status != OrderStatus.Принят)
-            {
-                throw new Exception("Заказ не в статусе \"Принят\"");
-            }
-            if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel
-            {
-                Id = order.DocumentId 
-            }).DocumentComponents, order.Count))
-            {
-                throw new Exception("Недостаточно компонентов");
-            }
-            _orderStorage.Update(new OrderBindingModel
-            {
-                Id = order.Id,
-                DocumentId = order.DocumentId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется,
-                ClientId = order.ClientId
-            });
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -96,6 +98,7 @@ namespace LawFirmBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 DocumentId = order.DocumentId,
+                ImplementerId = model.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

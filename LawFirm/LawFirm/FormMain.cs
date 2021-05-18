@@ -14,11 +14,13 @@ namespace LawFirmView
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
         private ReportLogic report;
-        public FormMain(OrderLogic orderLogic, ReportLogic report)
+        private readonly WorkModeling workModeling;
+        public FormMain(OrderLogic orderLogic, ReportLogic report, WorkModeling workModeling)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             this.report = report;
+            this.workModeling = workModeling;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -59,38 +61,6 @@ namespace LawFirmView
             form.ShowDialog();
             LoadData();
         }
-        private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-        private void ButtonOrderReady_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
         private void ButtonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -122,7 +92,7 @@ namespace LawFirmView
                         FileName = dialog.FileName
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                   MessageBoxIcon.Information);
                 }
             }
         }
@@ -136,51 +106,24 @@ namespace LawFirmView
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
-        private void пополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormWarehouseRefill>();
-            form.ShowDialog();
-        }
-        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormWarehouses>();
-            form.ShowDialog();
-        }
-
-        private void списокСкладовToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var dialog = new
-
-            SaveFileDialog
-            { Filter = "docx|*.docx" })
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    report.SaveWarehousesToWordFile(new ReportBindingModel
-                    {
-                        FileName = dialog.FileName
-                    });
-
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void компонентыПоСкладамToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormReportWarehouseComponents>();
-            form.ShowDialog();
-        }
-
-        private void списокЗаказовЗаВесьПериодToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormReportGeneralOrder>();
-            form.ShowDialog();
-        }
 
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var form = Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
 
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementers>();
+            form.ShowDialog();
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            workModeling.DoWork();
+            LoadData();
         }
     }
 }
+
