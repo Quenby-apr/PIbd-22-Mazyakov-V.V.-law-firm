@@ -17,6 +17,7 @@ namespace LawFirmListImplement.Models
         public List<Warehouse> Warehouses { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<MessageInfo> MessageInfoes { get; set; }
         private DataListSingleton() { 
             Components = new List<Component>();
             Orders = new List<Order>();
@@ -24,6 +25,7 @@ namespace LawFirmListImplement.Models
             Warehouses = new List<Warehouse>();
             Clients = new List<Client>();
             Implementers = new List<Implementer>();
+            MessageInfoes = new List<MessageInfo>();
         }
         public static DataListSingleton GetInstance()
         {
