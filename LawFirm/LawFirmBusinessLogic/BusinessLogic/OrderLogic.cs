@@ -78,7 +78,6 @@ namespace LawFirmBusinessLogic.BusinessLogics
                     Status = OrderStatus.Выполняется,
                     ClientId = order.ClientId
                 };
-                Console.WriteLine("prov");
                 if (!_warehouseStorage.CheckAndWriteOff(_documentStorage.GetElement(new DocumentBindingModel { Id = order.DocumentId }).DocumentComponents, order.Count))
                 {
                     orderModel.Status = OrderStatus.Нехватка_материалов;
