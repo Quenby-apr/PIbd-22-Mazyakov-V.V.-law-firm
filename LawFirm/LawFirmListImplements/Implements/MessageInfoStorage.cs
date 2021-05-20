@@ -87,7 +87,19 @@ namespace LawFirmListImplements.Implements
 
         public List<MessageInfoViewModel> GetMessagesForPage(MessageInfoBindingModel model)
         {
-            throw new NotImplementedException();
+            List<MessageInfoViewModel> result = new List<MessageInfoViewModel>();
+            int messkip = (model.Page.Value - 1) * model.PageSize.Value;
+            int mestake = model.PageSize.Value;
+            foreach (var messageInfo in source.MessageInfoes)
+            {
+                if (messageInfo.Subject.Contains(model.Subject) && messkip <= 0 && mestake > 0)
+                {
+                    result.Add(CreateModel(messageInfo));
+                    mestake--;
+                }
+                messkip--;
+            }
+            return result;
         }
     }
 }

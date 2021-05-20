@@ -75,12 +75,22 @@ namespace LawFirmFileImplement.Implements
 
         public int Count()
         {
-            throw new NotImplementedException();
+                return source.MessageInfoes.Count();
         }
 
         public List<MessageInfoViewModel> GetMessagesForPage(MessageInfoBindingModel model)
         {
-            throw new NotImplementedException();
+            return source.MessageInfoes.Where(rec => (model.ClientId.HasValue &&
+                model.ClientId.Value == rec.ClientId) || !model.ClientId.HasValue)
+                    .Skip((model.Page.Value - 1) * model.PageSize.Value).Take(model.PageSize.Value)
+                    .ToList().Select(rec => new MessageInfoViewModel
+                    {
+                        MessageId = rec.MessageId,
+                        SenderName = rec.SenderName,
+                        DateDelivery = rec.DateDelivery,
+                        Subject = rec.Subject,
+                        Body = rec.Body
+                    }).ToList();
         }
     }
 }
