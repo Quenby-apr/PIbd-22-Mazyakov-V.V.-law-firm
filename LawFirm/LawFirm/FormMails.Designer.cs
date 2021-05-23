@@ -114,7 +114,7 @@
             this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.dataGridViewMails);
             this.Name = "FormMails";
-            this.Text = "FormMails";
+            this.Text = "Сообщения";
             this.Load += new System.EventHandler(this.FormMails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMails)).EndInit();
             this.ResumeLayout(false);
