@@ -48,6 +48,7 @@
             this.buttonRef = new System.Windows.Forms.Button();
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.исполнителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьПисьмаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,8 @@
             this.справочникиToolStripMenuItem,
             this.отчётыToolStripMenuItem,
             this.пополнениеСкладаToolStripMenuItem,
-            this.запускРабоToolStripMenuItem});
+            this.запускРабоToolStripMenuItem,
+            this.открытьПисьмаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1057, 24);
@@ -221,6 +223,13 @@
             this.исполнителиToolStripMenuItem.Text = "Исполнители";
             this.исполнителиToolStripMenuItem.Click += new System.EventHandler(this.исполнителиToolStripMenuItem_Click_1);
             // 
+            // открытьПисьмаToolStripMenuItem
+            // 
+            this.открытьПисьмаToolStripMenuItem.Name = "открытьПисьмаToolStripMenuItem";
+            this.открытьПисьмаToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.открытьПисьмаToolStripMenuItem.Text = "Открыть письма";
+            this.открытьПисьмаToolStripMenuItem.Click += new System.EventHandler(this.открытьПисьмаToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,5 +276,6 @@
         private System.Windows.Forms.ToolStripMenuItem запускРабоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem исполнителиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьПисьмаToolStripMenuItem;
     }
 }

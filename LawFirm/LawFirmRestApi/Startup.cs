@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.BusinessLogics;
+using LawFirmBusinessLogic.HelperModels;
 using LawFirmBusinessLogic.Interfaces;
 using LawFirmDatabaseImplement.Implements;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Configuration;
 
 namespace LawFirmRestApi
 {
@@ -32,11 +35,13 @@ namespace LawFirmRestApi
             services.AddTransient<IDocumentStorage, DocumentStorage>();
             services.AddTransient<IWarehouseStorage, WarehouseStorage>();
             services.AddTransient<IComponentStorage, ComponentStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
             services.AddTransient<OrderLogic>();
             services.AddTransient<ClientLogic>();
             services.AddTransient<DocumentLogic>();
             services.AddTransient<WarehouseLogic>();
             services.AddTransient<ComponentLogic>();
+            services.AddTransient<MailLogic>();
             services.AddControllers().AddNewtonsoftJson();
         }
 
