@@ -47,12 +47,6 @@ namespace LawFirm
                 dataGridViewMails.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewMails.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewMails.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                Program.ConfigGrid(logic.Read(null), dataGridViewMails);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
             }
         }
         private void buttonPrev_Click_1(object sender, EventArgs e)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LawFirmView
+﻿namespace LawFirmView
 {
     partial class FormMain
     {
@@ -45,8 +43,6 @@ namespace LawFirmView
             this.списокЗаказовЗаВесьПериодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пополнениеСкладаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запускРабоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.открытьПисьмаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьБекапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonPayOrder = new System.Windows.Forms.Button();
             this.buttonRef = new System.Windows.Forms.Button();
@@ -64,7 +60,7 @@ namespace LawFirmView
             this.dataGridView.Location = new System.Drawing.Point(0, 28);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(1210, 422);
+            this.dataGridView.Size = new System.Drawing.Size(803, 422);
             this.dataGridView.TabIndex = 0;
             // 
             // menuStrip1
@@ -74,12 +70,10 @@ namespace LawFirmView
             this.отчётыToolStripMenuItem,
             this.пополнениеСкладаToolStripMenuItem,
             this.запускРабоToolStripMenuItem,
-            this.открытьПисьмаToolStripMenuItem,
-            this.запускРаботToolStripMenuItem,
-            this.создатьБекапToolStripMenuItem});
+            this.открытьПисьмаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1502, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1057, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -185,23 +179,9 @@ namespace LawFirmView
             this.запускРабоToolStripMenuItem.Text = "Запуск работ";
             this.запускРабоToolStripMenuItem.Click += new System.EventHandler(this.запускРабоToolStripMenuItem_Click);
             // 
-            // открытьПисьмаToolStripMenuItem
-            // 
-            this.открытьПисьмаToolStripMenuItem.Name = "открытьПисьмаToolStripMenuItem";
-            this.открытьПисьмаToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
-            this.открытьПисьмаToolStripMenuItem.Text = "Открыть письма";
-            this.открытьПисьмаToolStripMenuItem.Click += new System.EventHandler(this.открытьПисьмаToolStripMenuItem_Click);
-            // 
-            // создатьБекапToolStripMenuItem
-            // 
-            this.создатьБекапToolStripMenuItem.Name = "создатьБекапToolStripMenuItem";
-            this.создатьБекапToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.создатьБекапToolStripMenuItem.Text = "Создать Бекап";
-            this.создатьБекапToolStripMenuItem.Click += new System.EventHandler(this.создатьБекапToolStripMenuItem_Click_1);
-            // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(1251, 72);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(825, 66);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
             this.buttonCreateOrder.Size = new System.Drawing.Size(211, 23);
             this.buttonCreateOrder.TabIndex = 2;
@@ -211,7 +191,7 @@ namespace LawFirmView
             // 
             // buttonPayOrder
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(1251, 166);
+            this.buttonPayOrder.Location = new System.Drawing.Point(825, 250);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(211, 23);
             this.buttonPayOrder.TabIndex = 5;
@@ -221,7 +201,7 @@ namespace LawFirmView
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(1251, 247);
+            this.buttonRef.Location = new System.Drawing.Point(825, 319);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(211, 23);
             this.buttonRef.TabIndex = 6;
@@ -254,7 +234,7 @@ namespace LawFirmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1502, 450);
+            this.ClientSize = new System.Drawing.Size(1057, 450);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonPayOrder);
             this.Controls.Add(this.buttonCreateOrder);
@@ -271,6 +251,7 @@ namespace LawFirmView
             this.PerformLayout();
 
         }
+
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
@@ -296,6 +277,5 @@ namespace LawFirmView
         private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem исполнителиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьПисьмаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem создатьБекапToolStripMenuItem;
     }
 }

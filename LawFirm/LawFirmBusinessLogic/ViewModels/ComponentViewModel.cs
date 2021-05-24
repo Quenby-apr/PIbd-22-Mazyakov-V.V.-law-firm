@@ -13,8 +13,10 @@ namespace LawFirmBusinessLogic.ViewModels
     [DataContract]
     public class ComponentViewModel
     {
+        [DataMember]
         [Column(title: "Номер", width: 100, visible: false)]
         public int Id { get; set; }
+        [DataMember]
         [Column(title: "Название компонента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
     }
