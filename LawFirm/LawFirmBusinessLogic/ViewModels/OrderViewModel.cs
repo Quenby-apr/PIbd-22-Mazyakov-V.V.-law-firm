@@ -42,10 +42,10 @@ namespace LawFirmBusinessLogic.ViewModels
         [Column(title: "Статус", width: 100)]
         public OrderStatus Status { get; set; }
         [DataMember]
-        [Column(title: "Дата создания", width: 150)]
+        [Column(title: "Дата создания", width: 150, dateFormat: "D")]
         public DateTime DateCreate { get; set; }
         [DataMember]
-        [Column(title: "Дата выполнения", width: 150)]
+        [Column(title: "Дата выполнения", width: 150, dateFormat: "D")]
         public DateTime? DateImplement { get; set; }
     }
 }

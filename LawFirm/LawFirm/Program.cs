@@ -96,7 +96,8 @@ namespace LawFirmView
                                 ReadOnly = true,
                                 HeaderText = columnAttr.Title,
                                 Visible = columnAttr.Visible,
-                                Width = columnAttr.Width
+                                Width = columnAttr.Width,
+                                DefaultCellStyle = new DataGridViewCellStyle { Format = columnAttr.dateFormat }
                             };
                             if (columnAttr.GridViewAutoSize !=
                             GridViewAutoSize.None)
