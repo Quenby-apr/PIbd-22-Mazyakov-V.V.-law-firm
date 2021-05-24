@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
+using LawFirmBusinessLogic.Attributes;
 
 namespace LawFirmBusinessLogic.ViewModels
 {
@@ -12,13 +13,15 @@ namespace LawFirmBusinessLogic.ViewModels
     [DataContract]
     public class DocumentViewModel
     {
-        [DataMember] 
+        [DataMember]
+        [Column(title: "Номер", width: 100, visible: false)]
         public int Id { get; set; }
         [DataMember]
-        [DisplayName("Название изделия")]
+        [Column(title: "Название изделия", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string DocumentName { get; set; }
         [DataMember]
-        [DisplayName("Цена")] public decimal Price { get; set; }
+        [Column(title: "Цена", width: 150)]
+        public decimal Price { get; set; }
         [DataMember] 
         public Dictionary<int, (string, int)> DocumentComponents { get; set; }
     }
