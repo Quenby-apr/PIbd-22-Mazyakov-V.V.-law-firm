@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace LawFirm
@@ -33,10 +35,12 @@ namespace LawFirm
                 {
                     try
                     {
-                        logic.SaveWarehouseComponentsToExcelFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveWarehouseComponentsToExcelFile");
+                        method.Invoke(logic, new object[] { new ReportBindingModel
                         {
                             FileName = dialog.FileName
-                        });
+                        }});
+                        
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -51,7 +55,8 @@ namespace LawFirm
         {
             try
             {
-                var warehouseComponents = logic.GetWarehouseComponents();
+                MethodInfo method = logic.GetType().GetMethod("GetWarehouseComponents");
+                var warehouseComponents = (List<ReportWarehouseComponentViewModel>)method.Invoke(logic, null);
                 if (warehouseComponents != null)
                 {
                     dataGridView.Rows.Clear();

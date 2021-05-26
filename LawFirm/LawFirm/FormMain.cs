@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using LawFirm;
 using LawFirmBusinessLogic.BindingModels;
@@ -81,10 +82,11 @@ namespace LawFirmView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveComponentsToWordFile(new ReportBindingModel
+                    MethodInfo method = report.GetType().GetMethod("SaveComponentsToWordFile");
+                    method.Invoke(report, new object[] { new ReportBindingModel
                     {
                         FileName = dialog.FileName
-                    });
+                    }});
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -120,10 +122,11 @@ namespace LawFirmView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveWarehousesToWordFile(new ReportBindingModel
+                    MethodInfo method = report.GetType().GetMethod("SaveWarehousesToWordFile");
+                    method.Invoke(report, new object[] { new ReportBindingModel
                     {
                         FileName = dialog.FileName
-                    });
+                    }});
 
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

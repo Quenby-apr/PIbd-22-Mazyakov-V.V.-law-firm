@@ -133,7 +133,7 @@ namespace LawFirmBusinessLogic.BusinessLogic
         /// <param name="model"></param>
         public void SaveDocumentComponentToExcelFile(ReportBindingModel model)
         {
-            MethodInfo method = GetType().BaseType.GetTypeInfo().GetDeclaredMethod("GetDocumentComponent");
+            MethodInfo method = GetType().GetMethod("GetDocumentComponent");
 
             SaveToExcel.CreateDoc(new ExcelInfo
             {
@@ -144,7 +144,7 @@ namespace LawFirmBusinessLogic.BusinessLogic
         }
         public void SaveWarehouseComponentsToExcelFile(ReportBindingModel model)
         {
-            MethodInfo method = GetType().BaseType.GetTypeInfo().GetDeclaredMethod("GetWarehouseComponents");
+            MethodInfo method = GetType().GetMethod("GetWarehouseComponents");
 
             SaveToExcel.CreateWarehouseDoc(new ExcelWarehouseInfo
             {
@@ -159,7 +159,7 @@ namespace LawFirmBusinessLogic.BusinessLogic
         /// <param name="model"></param>
         public void SaveOrdersToPdfFile(ReportBindingModel model)
         {
-            MethodInfo method = GetType().BaseType.GetTypeInfo().GetDeclaredMethod("GetOrders");
+            MethodInfo method = GetType().GetMethod("GetOrders");
 
             SaveToPdf.CreateDoc(new PdfInfo
             {
@@ -172,13 +172,13 @@ namespace LawFirmBusinessLogic.BusinessLogic
         }
         public void SaveOrdersInfoByDateToPdfFile(ReportBindingModel model)
         {
-            MethodInfo method = GetType().BaseType.GetTypeInfo().GetDeclaredMethod("GetOrdersInfoByDate");
+            MethodInfo method = GetType().GetMethod("GetOrdersInfoByDate");
 
             SaveToPdf.CreateSummaryOrderInfoDoc(new PdfGeneralOrder
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
-                Orders = (List<ReportOrdersByDateViewModel>)method.Invoke(this, new object[] { model })
+                Orders = (List<ReportOrdersByDateViewModel>)method.Invoke(this, null)
             });
         }
     }
