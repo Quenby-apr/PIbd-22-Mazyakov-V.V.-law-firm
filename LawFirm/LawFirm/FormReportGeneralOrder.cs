@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmBusinessLogic.ViewModels;
 using Microsoft.Reporting.WinForms;
 using Unity;
 
@@ -35,10 +37,11 @@ namespace LawFirm
                 {
                     try
                     {
-                        logic.SaveOrdersInfoByDateToPdfFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveOrdersInfoByDateToPdfFile");
+                        method.Invoke(logic, new object[] { new ReportBindingModel
                         {
                             FileName = dialog.FileName
-                        });
+                        }});
 
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -54,7 +57,8 @@ namespace LawFirm
         {
             try
             {
-                var dataSource = logic.GetOrdersInfoByDate();
+                MethodInfo method = logic.GetType().GetMethod("GetOrdersInfoByDate");
+                List<ReportOrdersByDateViewModel> dataSource = (List<ReportOrdersByDateViewModel>)method.Invoke(logic, null);
 
                 ReportDataSource source = new ReportDataSource("DataSet", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);

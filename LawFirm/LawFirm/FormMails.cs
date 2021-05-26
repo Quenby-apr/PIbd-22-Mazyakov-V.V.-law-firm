@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogic;
 using LawFirmBusinessLogic.ViewModels;
+using LawFirmView;
 
 namespace LawFirm
 {

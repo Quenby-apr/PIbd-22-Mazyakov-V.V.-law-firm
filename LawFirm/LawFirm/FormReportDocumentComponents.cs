@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LawFirmBusinessLogic.BindingModels;
 using LawFirmBusinessLogic.BusinessLogic;
+using LawFirmBusinessLogic.ViewModels;
 using Unity;
 
 namespace LawFirm
@@ -27,7 +29,9 @@ namespace LawFirm
         {
             try
             {
-                var dict = logic.GetDocumentComponent();
+                MethodInfo method = logic.GetType().GetMethod("GetDocumentComponent");
+                List<ReportDocumentComponentViewModel>  dict = (List<ReportDocumentComponentViewModel>)method.Invoke(logic, null);
+
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -57,10 +61,11 @@ namespace LawFirm
                 {
                     try
                     {
-                        logic.SaveDocumentComponentToExcelFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveDocumentComponentToExcelFile");
+                        method.Invoke(logic, new object[] { new ReportBindingModel
                         {
                             FileName = dialog.FileName
-                        });
+                        }});
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     }

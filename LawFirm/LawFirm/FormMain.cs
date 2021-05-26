@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using LawFirm;
 using LawFirmBusinessLogic.BindingModels;
@@ -13,13 +14,15 @@ namespace LawFirmView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
+        private readonly BackUpAbstractLogic _backUpAbstractLogic;
         private ReportLogic report;
         private readonly WorkModeling workModeling;
-        public FormMain(OrderLogic orderLogic, ReportLogic report, WorkModeling workModeling)
+        public FormMain(OrderLogic orderLogic, ReportLogic report, WorkModeling workModeling, BackUpAbstractLogic backUpAbstractLogic)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             this.report = report;
+            _backUpAbstractLogic = backUpAbstractLogic;
             this.workModeling = workModeling;
         }
         private void FormMain_Load(object sender, EventArgs e)
@@ -30,15 +33,7 @@ namespace LawFirmView
         {
             try
             {
-                var list = _orderLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.DataSource = list;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(_orderLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
@@ -87,10 +82,11 @@ namespace LawFirmView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveComponentsToWordFile(new ReportBindingModel
+                    MethodInfo method = report.GetType().GetMethod("SaveComponentsToWordFile");
+                    method.Invoke(report, new object[] { new ReportBindingModel
                     {
                         FileName = dialog.FileName
-                    });
+                    }});
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -126,10 +122,11 @@ namespace LawFirmView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveWarehousesToWordFile(new ReportBindingModel
+                    MethodInfo method = report.GetType().GetMethod("SaveWarehousesToWordFile");
+                    method.Invoke(report, new object[] { new ReportBindingModel
                     {
                         FileName = dialog.FileName
-                    });
+                    }});
 
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -169,6 +166,28 @@ namespace LawFirmView
         {
             var form = Container.Resolve<FormImplementers>();
             form.ShowDialog();
+        }
+
+        private void создатьБекапToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_backUpAbstractLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        _backUpAbstractLogic.CreateArchive(fbd.SelectedPath);
+                        MessageBox.Show("Бекап создан", "Сообщение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
         }
     }
 }
