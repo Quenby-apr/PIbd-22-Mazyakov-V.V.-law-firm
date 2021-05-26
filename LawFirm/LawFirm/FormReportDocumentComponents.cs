@@ -63,9 +63,9 @@ namespace LawFirm
                     {
                         MethodInfo method = logic.GetType().GetMethod("SaveDocumentComponentToExcelFile");
                         method.Invoke(logic, new object[] { new ReportBindingModel
-                            {
-                                FileName = dialog.FileName
-                            }});
+                        {
+                            FileName = dialog.FileName
+                        }});
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     }
